@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
 
-import amazingAddsLogo from 'figma:asset/d03755cc7b39b00b11f5ea044da7636315c4e01d.png';
-import sukhamHandmadeLogo from 'figma:asset/d631cac07dfcf52815867a921408c163494fd8d2.png';
-import toysColonyLogo from 'figma:asset/73891f7e22291fe159354326aa56baef8c672910.png';
-import rajisKitchenLogo from 'figma:asset/be9116520b2ca48dc31a3c6f5c69dc14263f8cdf.png';
+import amazingAddsLogo from '@/assets/d03755cc7b39b00b11f5ea044da7636315c4e01d.png';
+import sukhamHandmadeLogo from '@/assets/d631cac07dfcf52815867a921408c163494fd8d2.png';
+import toysColonyLogo from '@/assets/73891f7e22291fe159354326aa56baef8c672910.png';
+import rajisKitchenLogo from '@/assets/be9116520b2ca48dc31a3c6f5c69dc14263f8cdf.png';
 
 const clients = [
   { name: 'Amazing Adds', logo: amazingAddsLogo },

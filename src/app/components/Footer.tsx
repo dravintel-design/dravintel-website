@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import logoImage from '../assets/logobig.svg';
+import logoImage from '@/assets/logobig.svg';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -146,7 +146,7 @@ export function Footer() {
                   href="https://www.instagram.com/dravintel_design?igsh=MTh0azV1dWlsamhubw%3D%3D&utm_source=qr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white px-5 py-2 text-sm text-[#5B21B6] hover:bg-white/90 transition-colors uppercase tracking-wide font-medium"
+                  className="rounded-full bg-white px-5 py-2 text-sm text-[#8B5CF6] hover:bg-white/90 transition-colors uppercase tracking-wide font-medium"
                 >
                   Instagram
                 </a>
@@ -154,7 +154,7 @@ export function Footer() {
                   href="https://youtube.com/@dravintelux?si=SHiBF1NJBIc3h9Qz"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white px-5 py-2 text-sm text-[#5B21B6] hover:bg-white/90 transition-colors uppercase tracking-wide font-medium"
+                  className="rounded-full bg-white px-5 py-2 text-sm text-[#8B5CF6] hover:bg-white/90 transition-colors uppercase tracking-wide font-medium"
                 >
                   YouTube
                 </a>

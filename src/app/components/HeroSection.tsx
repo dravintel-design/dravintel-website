@@ -33,11 +33,11 @@ export function HeroSection() {
       color: string;
       opacity: number;
     }> = [
-      { amplitude: 80, frequency: 0.002, speed: 0.02, offset: 0, color: '#8B5CF6', opacity: 0.3 },
-      { amplitude: 60, frequency: 0.003, speed: 0.015, offset: 100, color: '#7C3AED', opacity: 0.25 },
-      { amplitude: 50, frequency: 0.0025, speed: 0.018, offset: 200, color: '#6D28D9', opacity: 0.22 },
-      { amplitude: 70, frequency: 0.0028, speed: 0.012, offset: 300, color: '#5B21B6', opacity: 0.18 },
-    ];
+        { amplitude: 80, frequency: 0.002, speed: 0.02, offset: 0, color: '#8B5CF6', opacity: 0.3 },
+        { amplitude: 60, frequency: 0.003, speed: 0.015, offset: 100, color: '#7C3AED', opacity: 0.25 },
+        { amplitude: 50, frequency: 0.0025, speed: 0.018, offset: 200, color: '#6D28D9', opacity: 0.22 },
+        { amplitude: 70, frequency: 0.0028, speed: 0.012, offset: 300, color: '#5B21B6', opacity: 0.18 },
+      ];
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -91,24 +91,92 @@ export function HeroSection() {
       />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 w-full relative z-10">
-        <div className="max-w-3xl">
+        <div className="w-full">
           {/* Large headline */}
           <div className="mb-8">
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-black leading-[0.9]">
-              Elevate,<br />
-              Beyond the Ordinary.
-            </h1>
+            <motion.h1
+              className="text-6xl sm:text-7xl lg:text-7xl font-bold tracking-tight text-black leading-[0.9] flex flex-wrap gap-x-[0.2em] gap-y-2"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.05
+                  }
+                }
+              }}
+            >
+              <div className="flex flex-col items-start justify-start">
+                {"Elevate,".split(" ").map((word, i) => (
+                  <span key={`l1-${i}`} className="inline-block whitespace-nowrap">
+                    {word.split("").map((char, index) => (
+                      <motion.span
+                        key={index}
+                        className="inline-block"
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
+                ))}
+                <span className="inline-block whitespace-nowrap">
+                  {"Beyond the".split("").map((char, index) => (
+                    <motion.span
+                      key={index}
+                      className="inline-block"
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
+                      }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  ))}
+                </span>
+                {"Ordinary.".split(" ").map((word, i) => (
+                  <span key={`l3-${i}`} className="inline-block whitespace-nowrap">
+                    {word.split("").map((char, index) => (
+                      <motion.span
+                        key={index}
+                        className="inline-block"
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
+                ))}
+              </div>
+            </motion.h1>
           </div>
 
           {/* Description */}
           <div className="mb-8">
-            <p className="text-lg text-gray-800 max-w-md leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="text-lg text-gray-800 max-w-md leading-relaxed"
+            >
               We're a design and technology studio in Chennai, creating work that moves brands from good to unforgettable.
-            </p>
+            </motion.p>
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-wrap gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8 }}
+            className="flex flex-wrap gap-4"
+          >
             {/* Secondary Button */}
             <button
               onClick={() => setIsModalOpen(true)}
@@ -116,15 +184,15 @@ export function HeroSection() {
             >
               Let's start free
             </button>
-            
+
             {/* Primary Purple Button */}
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B5CF6] border-2 border-[#8B5CF6] px-6 py-3 text-sm font-medium tracking-wide text-white hover:bg-[#5B21B6] hover:border-[#5B21B6] transition-all"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B5CF6] border-2 border-[#8B5CF6] px-6 py-3 text-sm font-medium tracking-wide text-white hover:bg-[#7C3AED] hover:border-[#7C3AED] transition-all"
             >
               Start project
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
 

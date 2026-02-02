@@ -79,7 +79,7 @@ export function AboutPage() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-12">
               Who We Are
             </h2>
-            
+
             <div className="text-xl sm:text-2xl lg:text-3xl text-black leading-relaxed space-y-6">
               <p>
                 <span className="bg-[#8B5CF6] text-white px-2 py-1">Dravintel Design</span> is a design and technology studio built on a simple idea.
@@ -119,84 +119,27 @@ export function AboutPage() {
 
             {/* Right Side - Principle Cards */}
             <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-                {/* Left Column - Cards 1 and 3 */}
-                <div className="space-y-6 lg:space-y-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+                {principles.map((principle, index) => (
                   <motion.div
+                    key={principle.number}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="relative bg-white rounded-3xl border-2 border-black p-8"
+                    transition={{ duration: 0.6, delay: index * 0.15 }}
+                    className="relative bg-white rounded-3xl border-2 border-black p-8 h-full flex flex-col"
                   >
                     <div className="text-sm font-medium text-gray-600 mb-4">
-                      {principles[0].number}
+                      {principle.number}
                     </div>
                     <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4 leading-tight">
-                      {principles[0].title}
+                      {principle.title}
                     </h3>
-                    <p className="text-base text-black leading-relaxed">
-                      {principles[0].description}
+                    <p className="text-base text-black leading-relaxed mt-auto">
+                      {principle.description}
                     </p>
                   </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="relative bg-white rounded-3xl border-2 border-black p-8"
-                  >
-                    <div className="text-sm font-medium text-gray-600 mb-4">
-                      {principles[2].number}
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4 leading-tight">
-                      {principles[2].title}
-                    </h3>
-                    <p className="text-base text-black leading-relaxed">
-                      {principles[2].description}
-                    </p>
-                  </motion.div>
-                </div>
-
-                {/* Right Column - Card 2 centered */}
-                <div className="space-y-6 lg:space-y-8">
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.15 }}
-                    className="relative bg-white rounded-3xl border-2 border-black p-8"
-                  >
-                    <div className="text-sm font-medium text-gray-600 mb-4">
-                      {principles[1].number}
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4 leading-tight">
-                      {principles[1].title}
-                    </h3>
-                    <p className="text-base text-black leading-relaxed">
-                      {principles[1].description}
-                    </p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.45 }}
-                    className="relative bg-white rounded-3xl border-2 border-black p-8"
-                  >
-                    <div className="text-sm font-medium text-gray-600 mb-4">
-                      {principles[3].number}
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4 leading-tight">
-                      {principles[3].title}
-                    </h3>
-                    <p className="text-base text-black leading-relaxed">
-                      {principles[3].description}
-                    </p>
-                  </motion.div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -260,7 +203,7 @@ export function AboutPage() {
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-black px-8 py-4 text-lg font-medium text-black hover:bg-black hover:text-white transition-all"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-black px-8 py-4 text-lg font-medium text-black hover:bg-[#8B5CF6] hover:text-white hover:border-[#8B5CF6] transition-all"
             >
               Get in Touch
             </a>

@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
-import dravintelLogo from 'figma:asset/9c35314ffaa1431c1e6596b23d44d5af343d0ba3.png';
+import dravintelLogo from '@/assets/9c35314ffaa1431c1e6596b23d44d5af343d0ba3.png';
 
 interface LoaderProps {
   onLoadingComplete: () => void;
@@ -68,8 +68,8 @@ export function Loader({ onLoadingComplete }: LoaderProps) {
           className="mb-12"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ 
-            duration: 0.8, 
+          transition={{
+            duration: 0.8,
             ease: "easeOut",
             type: "spring",
             stiffness: 100
@@ -90,7 +90,7 @@ export function Loader({ onLoadingComplete }: LoaderProps) {
               }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            
+
             {/* Animated Circle Around Logo */}
             <motion.svg
               className="absolute -inset-12"

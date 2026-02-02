@@ -78,7 +78,7 @@ export function WorkPage() {
       <div className="relative">
         {projects.map((project, index) => {
           const isEven = index % 2 === 0;
-          
+
           return (
             <motion.div
               key={project.title}
@@ -123,13 +123,13 @@ export function WorkPage() {
                       <p className="text-lg sm:text-xl text-gray-800 mb-8 leading-relaxed">
                         {project.description}
                       </p>
-                      
+
                       {/* Tags */}
                       <div className="flex flex-wrap gap-3">
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="inline-flex items-center rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-black uppercase tracking-wide hover:bg-gray-200 transition-colors"
+                            className="inline-flex items-center rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-black uppercase tracking-wide hover:bg-[#8B5CF6] hover:text-white transition-colors"
                           >
                             {tag}
                           </span>
@@ -161,7 +161,7 @@ export function WorkPage() {
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-black px-8 py-4 text-lg font-medium text-black hover:bg-black hover:text-white transition-all"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-black px-8 py-4 text-lg font-medium text-black hover:bg-[#8B5CF6] hover:text-white hover:border-[#8B5CF6] transition-all"
             >
               Get in Touch
             </a>

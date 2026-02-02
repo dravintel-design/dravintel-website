@@ -98,9 +98,8 @@ export function WorkSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, root: null }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${
-                index % 2 === 0 ? '' : 'lg:direction-rtl'
-              }`}
+              className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${index % 2 === 0 ? '' : 'lg:direction-rtl'
+                }`}
             >
               {/* Image */}
               <div className={`lg:col-span-7 ${index % 2 === 0 ? '' : 'lg:order-2'}`}>
@@ -145,7 +144,7 @@ export function WorkSection() {
                 >
                   {project.description}
                 </motion.p>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -162,13 +161,14 @@ export function WorkSection() {
                     </span>
                   ))}
                 </motion.div>
-                
+
                 <motion.div
+
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, root: null }}
                   transition={{ duration: 0.5, delay: 0.6 }}
-                  className="inline-flex items-center gap-2 text-black font-medium hover:gap-4 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-2 text-black font-medium hover:gap-4 hover:text-[#8B5CF6] transition-all cursor-pointer"
                 >
                   View Project
                   <ArrowRight className="h-5 w-5" />
@@ -193,7 +193,7 @@ export function WorkSection() {
             <ArrowRight className="h-5 w-5" />
           </a>
         </motion.div>
-      </div>
-    </section>
+      </div >
+    </section >
   );
 }

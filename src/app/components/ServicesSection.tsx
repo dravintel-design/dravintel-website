@@ -63,16 +63,46 @@ export function ServicesSection() {
         <div className="relative mb-20">
           <div className="relative pb-16 border-b border-gray-200">
             {/* Main headline - left side */}
+            {/* Main headline - left side - Staggered Character Animation */}
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, root: null }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black leading-[1.1] mb-12"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black leading-[1.1] mb-12 flex flex-wrap gap-x-[0.2em] gap-y-2"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.03
+                  }
+                }
+              }}
             >
-              Helping businesses stand out,
-              <br />
-              not blend in
+              {"Helping businesses stand out, not blend in".split(" ").map((word, i) => (
+                <span key={i} className="inline-block whitespace-nowrap">
+                  {word.split("").map((char, index) => (
+                    <motion.span
+                      key={index}
+                      className="inline-block"
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            type: "spring",
+                            damping: 12,
+                            stiffness: 100
+                          }
+                        }
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                  {/* Add a non-breaking space after words unless it's the last word (handled by flex gap, but ensuring space for copy/paste if needed, though flex gap handles visual) */}
+                </span>
+              ))}
             </motion.h2>
 
             {/* Description - two columns below headline */}
@@ -87,7 +117,7 @@ export function ServicesSection() {
                   Each project reflects the strategy, craft, and attention to detail we bring from the first sketch to the final release. Nothing is rushed. Everything is intentional.
                 </p>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

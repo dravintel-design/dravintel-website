@@ -76,11 +76,10 @@ export function ContactPage() {
                     key={service}
                     type="button"
                     onClick={() => toggleService(service)}
-                    className={`px-6 py-3 rounded-full border-2 text-sm font-medium tracking-wide uppercase transition-all ${
-                      formData.services.includes(service)
-                        ? 'bg-[#8B5CF6] text-white border-[#8B5CF6]'
-                        : 'bg-white text-black border-black hover:bg-[#8B5CF6] hover:text-white hover:border-[#8B5CF6]'
-                    }`}
+                    className={`px-6 py-3 rounded-full border-2 text-sm font-medium tracking-wide uppercase transition-all ${formData.services.includes(service)
+                      ? 'bg-[#8B5CF6] text-white border-[#8B5CF6]'
+                      : 'bg-white text-black border-black hover:bg-[#8B5CF6] hover:text-white hover:border-[#8B5CF6]'
+                      }`}
                   >
                     {service}
                   </button>
@@ -95,7 +94,7 @@ export function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
+                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
                   placeholder="NAME"
                 />
                 <input
@@ -104,7 +103,7 @@ export function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
+                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
                   placeholder="EMAIL ADDRESS"
                 />
                 <input
@@ -113,7 +112,7 @@ export function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
+                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
                   placeholder="PHONE NUMBER"
                 />
               </div>
@@ -126,7 +125,7 @@ export function ContactPage() {
                   onChange={handleChange}
                   required
                   rows={8}
-                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-black transition-all resize-none placeholder:text-gray-400 placeholder:italic"
+                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all resize-none placeholder:text-gray-400 placeholder:italic"
                   placeholder="Tell us what's on your mind—big ideas, small details, or anything in between..."
                 />
               </div>
@@ -138,7 +137,7 @@ export function ContactPage() {
                 </p>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 rounded-full bg-[#8B5CF6] px-10 py-4 text-base font-bold text-white hover:bg-[#5B21B6] transition-all uppercase tracking-wide ml-auto"
+                  className="inline-flex items-center gap-3 rounded-full bg-[#8B5CF6] px-10 py-4 text-base font-bold text-white hover:bg-[#7C3AED] transition-all uppercase tracking-wide ml-auto"
                 >
                   <ArrowRight className="h-5 w-5" />
                   Send
