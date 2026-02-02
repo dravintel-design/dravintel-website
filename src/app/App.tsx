@@ -10,6 +10,7 @@ import { ServicesPage } from '@/app/pages/ServicesPage';
 import { WorkPage } from '@/app/pages/WorkPage';
 import { AboutPage } from '@/app/pages/AboutPage';
 import { ContactPage } from '@/app/pages/ContactPage';
+import { ScrollToTop } from '@/app/components/ScrollToTop';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,7 @@ export default function App() {
     } else {
       document.body.style.overflow = 'unset';
     }
-    
+
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -34,7 +35,7 @@ export default function App() {
   // Hide default cursor
   useEffect(() => {
     document.body.style.cursor = 'none';
-    
+
     // Apply to all elements
     const style = document.createElement('style');
     style.innerHTML = `
@@ -43,7 +44,7 @@ export default function App() {
       }
     `;
     document.head.appendChild(style);
-    
+
     return () => {
       document.body.style.cursor = 'auto';
       document.head.removeChild(style);
@@ -52,6 +53,7 @@ export default function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <AnimatePresence mode="wait">
         {isLoading && <Loader onLoadingComplete={handleLoadingComplete} />}
       </AnimatePresence>

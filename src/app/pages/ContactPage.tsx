@@ -94,7 +94,7 @@ export function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
+                  className="w-full px-6 py-5 text-base bg-white border-2 border-gray-300 hover:border-black rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
                   placeholder="NAME"
                 />
                 <input
@@ -103,7 +103,7 @@ export function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
+                  className="w-full px-6 py-5 text-base bg-white border-2 border-gray-300 hover:border-black rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
                   placeholder="EMAIL ADDRESS"
                 />
                 <input
@@ -112,7 +112,7 @@ export function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
+                  className="w-full px-6 py-5 text-base bg-white border-2 border-gray-300 hover:border-black rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all placeholder:text-gray-500 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider"
                   placeholder="PHONE NUMBER"
                 />
               </div>
@@ -125,7 +125,7 @@ export function ContactPage() {
                   onChange={handleChange}
                   required
                   rows={8}
-                  className="w-full px-6 py-5 text-base bg-white border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all resize-none placeholder:text-gray-400 placeholder:italic"
+                  className="w-full px-6 py-5 text-base bg-white border-2 border-gray-300 hover:border-black rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all resize-none placeholder:text-gray-400 placeholder:italic"
                   placeholder="Tell us what's on your mind—big ideas, small details, or anything in between..."
                 />
               </div>
