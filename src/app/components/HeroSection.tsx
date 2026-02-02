@@ -82,7 +82,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gray-100 pt-20">
+    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gray-100">
       {/* WebGL-style Animated Waves */}
       <canvas
         ref={canvasRef}
@@ -90,109 +90,106 @@ export function HeroSection() {
         style={{ width: '100%', height: '100%' }}
       />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 w-full relative z-10">
-        <div className="w-full">
-          {/* Large headline */}
-          <div className="mb-8">
+      <div className="mx-auto max-w-[90%] lg:max-w-7xl px-6 lg:px-8 py-16 w-full relative z-10 h-full flex flex-col justify-center">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-8 items-end">
+          {/* Massive Headline */}
+          <div className="lg:col-span-8">
             <motion.h1
-              className="text-6xl sm:text-7xl lg:text-7xl font-bold tracking-tight text-black leading-[0.9] flex flex-wrap gap-x-[0.2em] gap-y-2"
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter text-black leading-[0.9]"
               initial="hidden"
               animate="visible"
               variants={{
                 hidden: {},
                 visible: {
                   transition: {
-                    staggerChildren: 0.05
+                    staggerChildren: 0.1
                   }
                 }
               }}
             >
               <div className="flex flex-col items-start justify-start">
-                {"Elevate,".split(" ").map((word, i) => (
-                  <span key={`l1-${i}`} className="inline-block whitespace-nowrap">
-                    {word.split("").map((char, index) => (
-                      <motion.span
-                        key={index}
-                        className="inline-block"
-                        variants={{
-                          hidden: { opacity: 0, y: 20 },
-                          visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                  </span>
-                ))}
-                <span className="inline-block whitespace-nowrap">
-                  {"Beyond the".split("").map((char, index) => (
-                    <motion.span
-                      key={index}
-                      className="inline-block"
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
-                      }}
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </motion.span>
+                <div className="block">
+                  {"We Design Digital Experiences".split(" ").map((word, i) => (
+                    <span key={`l1-${i}`} className="inline-block whitespace-nowrap mr-[0.25em]">
+                      {word.split("").map((char, index) => (
+                        <motion.span
+                          key={index}
+                          className="inline-block"
+                          variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
+                          }}
+                        >
+                          {char}
+                        </motion.span>
+                      ))}
+                    </span>
                   ))}
-                </span>
-                {"Ordinary.".split(" ").map((word, i) => (
-                  <span key={`l3-${i}`} className="inline-block whitespace-nowrap">
-                    {word.split("").map((char, index) => (
-                      <motion.span
-                        key={index}
-                        className="inline-block"
-                        variants={{
-                          hidden: { opacity: 0, y: 20 },
-                          visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                  </span>
-                ))}
+                </div>
+                <div className="block">
+                  {"That Turn Attention".split(" ").map((word, i) => (
+                    <span key={`l2-${i}`} className="inline-block whitespace-nowrap mr-[0.25em]">
+                      {word.split("").map((char, index) => (
+                        <motion.span
+                          key={index}
+                          className="inline-block"
+                          variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
+                          }}
+                        >
+                          {char}
+                        </motion.span>
+                      ))}
+                    </span>
+                  ))}
+                </div>
+                <div className="block">
+                  {"Into Revenue".split(" ").map((word, i) => (
+                    <span key={`l3-${i}`} className="inline-block whitespace-nowrap mr-[0.25em]">
+                      {word.split("").map((char, index) => (
+                        <motion.span
+                          key={index}
+                          className="inline-block"
+                          variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } }
+                          }}
+                        >
+                          {char}
+                        </motion.span>
+                      ))}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.h1>
           </div>
 
-          {/* Description */}
-          <div className="mb-8">
+          {/* Description & CTA - Aligned Bottom Right */}
+          <div className="lg:col-span-4 lg:col-start-9 flex flex-col gap-8 pb-4">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.8 }}
-              className="text-lg text-gray-800 max-w-md leading-relaxed"
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="text-lg lg:text-xl text-gray-800 leading-relaxed font-medium"
             >
-              We're a design and technology studio in Chennai, creating work that moves brands from good to unforgettable.
+              Dravintel helps startups and growing businesses transform strategy into high-performing UX, branding, and product experiences that customers trust and choose.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4, duration: 0.8 }}
+            >
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B5CF6] border-2 border-[#8B5CF6] px-8 py-4 text-lg font-medium tracking-wide text-white hover:bg-[#7C3AED] hover:border-[#7C3AED] transition-all w-full sm:w-auto"
+              >
+                Work with us
+              </Link>
+            </motion.div>
           </div>
-
-          {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.8 }}
-            className="flex flex-wrap gap-4"
-          >
-            {/* Secondary Button */}
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-black px-6 py-3 text-sm font-medium tracking-wide text-black hover:bg-[#8B5CF6] hover:text-white hover:border-[#8B5CF6] transition-all"
-            >
-              Let's start free
-            </button>
-
-            {/* Primary Purple Button */}
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B5CF6] border-2 border-[#8B5CF6] px-6 py-3 text-sm font-medium tracking-wide text-white hover:bg-[#7C3AED] hover:border-[#7C3AED] transition-all"
-            >
-              Start project
-            </Link>
-          </motion.div>
         </div>
       </div>
 

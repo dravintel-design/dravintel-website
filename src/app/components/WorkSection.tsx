@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
 const projects = [
@@ -185,13 +186,13 @@ export function WorkSection() {
           transition={{ duration: 0.8 }}
           className="mt-16 text-center"
         >
-          <a
-            href="#contact"
+          <Link
+            to="/work"
             className="inline-flex items-center gap-2 rounded-full border-2 border-black px-8 py-4 text-lg text-black hover:bg-[#8B5CF6] hover:text-white hover:border-[#8B5CF6] transition-all"
           >
             View All Projects
             <ArrowRight className="h-5 w-5" />
-          </a>
+          </Link>
         </motion.div>
       </div >
     </section >
