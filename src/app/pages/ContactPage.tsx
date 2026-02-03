@@ -3,6 +3,7 @@ import { ArrowRight, Phone, MessageCircle, Mail, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { supabase } from '../../lib/supabase';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
 
 export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,6 +41,31 @@ export function ContactPage() {
         ]);
 
       if (error) throw error;
+
+      // Send email notification via EmailJS
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (serviceId && templateId && publicKey) {
+        try {
+          await emailjs.send(
+            serviceId,
+            templateId,
+            {
+              from_name: formData.name,
+              from_email: formData.email,
+              phone: formData.phone,
+              message: formData.message,
+              service_type: formData.services.join(', '),
+            },
+            publicKey
+          );
+        } catch (emailError) {
+          console.error('Failed to send email:', emailError);
+          // Don't throw error to user, as database save was successful
+        }
+      }
 
       toast.success('Thank you for your message! We\'ll get back to you in 2 working days.');
       setFormData({ name: '', email: '', phone: '', message: '', services: [] });

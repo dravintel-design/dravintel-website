@@ -174,7 +174,7 @@ export function HeroSection() {
               transition={{ delay: 1.2, duration: 0.8 }}
               className="text-lg lg:text-xl text-gray-800 leading-relaxed font-medium"
             >
-              Dravintel helps startups and growing businesses transform strategy into high-performing UX, branding, and product experiences that customers trust and choose.
+              We help ambitious businesses turn complexity into clarity, and clarity into measurable growth through UX-led design.
             </motion.p>
 
             <motion.div
