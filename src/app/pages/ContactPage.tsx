@@ -1,8 +1,11 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Phone, MessageCircle, Mail } from 'lucide-react';
+import { ArrowRight, Phone, MessageCircle, Mail, Loader2 } from 'lucide-react';
 import { useState } from 'react';
+import { supabase } from '../../lib/supabase';
+import { toast } from 'sonner';
 
 export function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,12 +16,33 @@ export function ContactPage() {
 
   const services = ['UX UI', 'WEB DESIGN', 'PRODUCT DESIGN', 'WEB APP', 'MOBILE APP', 'INDUSTRIAL DESIGN', 'WORKSHOP', 'OTHER'];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission (mock)
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We\'ll get back to you in 2 working days.');
-    setFormData({ name: '', email: '', phone: '', message: '', services: [] });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('contact_requests')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            service_type: formData.services,
+          },
+        ]);
+
+      if (error) throw error;
+
+      toast.success('Thank you for your message! We\'ll get back to you in 2 working days.');
+      setFormData({ name: '', email: '', phone: '', message: '', services: [] });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error('Something went wrong. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -137,10 +161,15 @@ export function ContactPage() {
                 </p>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 rounded-full bg-[#8B5CF6] px-10 py-4 text-base font-bold text-white hover:bg-[#7C3AED] transition-all uppercase tracking-wide ml-auto"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center gap-3 rounded-full bg-[#8B5CF6] px-10 py-4 text-base font-bold text-white hover:bg-[#7C3AED] transition-all uppercase tracking-wide ml-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <ArrowRight className="h-5 w-5" />
-                  Send
+                  {isSubmitting ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <ArrowRight className="h-5 w-5" />
+                  )}
+                  {isSubmitting ? 'Sending...' : 'Send'}
                 </button>
               </div>
             </form>
