@@ -7,8 +7,13 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {
-      external: []
-    }
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'motion', 'lucide-react'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
   },
   resolve: {
     alias: {
