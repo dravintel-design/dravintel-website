@@ -20,6 +20,12 @@ export function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    if (!supabase) {
+      toast.error('Unable to submit form: Database connection not configured.');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('contact_requests')
