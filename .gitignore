@@ -119,3 +119,9 @@ dist
 
 # Gemini
 .gemini/
+
+# Local-only: raw source footage, design backups, tool folders
+/Videos/
+/backups/
+/.claude/
+.DS_Store

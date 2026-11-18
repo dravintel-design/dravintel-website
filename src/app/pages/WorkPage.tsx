@@ -1,5 +1,10 @@
-import { motion } from 'motion/react';
+import { useDocumentTitle } from '@/app/components/dna/useDocumentTitle';
+import { Link } from 'react-router-dom';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { PageHero } from '@/app/components/dna/PageHero';
+import { DyeText } from '@/app/components/dna/DyeText';
+import { Reveal } from '@/app/components/dna/Reveal';
+import { scrollToTarget } from '@/app/components/dna/SmoothScroll';
 
 const projects = [
   {
@@ -35,139 +40,87 @@ const projects = [
 ];
 
 export function WorkPage() {
+  useDocumentTitle('Work');
+
   return (
-    <div className="relative bg-white pt-20">
-      {/* Hero Section */}
-      <div className="relative py-24 lg:py-32">
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Large Heading - Left Side */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-7"
-            >
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold text-black leading-[0.95] mb-8">
-                Unforgettable Work<br />
-                Distinctly Ours
-              </h1>
-            </motion.div>
-
-            {/* Description Text - Right Side in Two Columns */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 flex items-end"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm lg:text-base text-black leading-relaxed">
-                <p>
-                  Each project reflects the strategy, craft, and attention to detail we bring from the first sketch to the final release. Nothing is rushed. Everything is intentional.
-                </p>
-                <p>
-                  These aren't just deliverables; they're the result of late-night thinking, tight feedback loops, and a belief that great design should never blend in.
-                </p>
-              </div>
-            </motion.div>
-          </div>
+    <div className="relative bg-[var(--sai-bg)]">
+      <PageHero video="cliff" lines={['Unforgettable Work', 'Distinctly Ours']}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw] dna-body">
+          <p className="lg:col-span-4 lg:col-start-6">
+            Each project reflects the strategy, craft, and attention to detail we bring from the first sketch to the final release. Nothing is rushed. Everything is intentional.
+          </p>
+          <p className="lg:col-span-3">
+            These aren't just deliverables; they're the result of late-night thinking, tight feedback loops, and a belief that great design should never blend in.
+          </p>
         </div>
-      </div>
+      </PageHero>
 
-      {/* Projects Grid - Alternating Layout */}
-      <div className="relative">
+      {/* Index list — hovering a row floats the project image beside the cursor */}
+      <section className="dna-gutter pb-[10vw]">
+        <ul className="border-t border-[var(--dna-gray-200)]">
+          {projects.map((project, index) => (
+            <li key={project.title} className="border-b border-[var(--dna-gray-200)]">
+              <Reveal delay={index * 0.08}>
+                <a
+                  href={`#project-${index + 1}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToTarget(`#project-${index + 1}`);
+                  }}
+                  data-cursor-image={project.image}
+                  className="group grid grid-cols-12 items-baseline gap-4 py-6 md:py-8"
+                >
+                  <span className="col-span-2 lg:col-span-1 dna-index !text-[15px] !font-semibold text-[var(--dna-gray-600)]">{String(index + 1).padStart(2, '0')}.</span>
+                  <span className="col-span-10 lg:col-span-6 dna-h2 transition-transform duration-500 group-hover:translate-x-[1vw]" style={{ transitionTimingFunction: 'var(--dna-ease)' }}>
+                    {project.title}
+                  </span>
+                  <span className="hidden md:block lg:col-span-5 dna-overline text-[var(--dna-gray-600)] text-right leading-relaxed">
+                    {project.tags.slice(0, 3).join(' / ')}
+                  </span>
+                </a>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Case studies — zig-zag */}
+      <section className="space-y-[18vw] md:space-y-[12vw] pb-[12vw]">
         {projects.map((project, index) => {
-          const isEven = index % 2 === 0;
-
+          const flip = index % 2 === 1;
           return (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative mb-32 last:mb-0"
-            >
-              <div className={`relative mx-auto ${isEven ? 'max-w-7xl px-6 lg:px-8' : 'max-w-7xl px-6 lg:px-8'}`}>
-                <div className={`relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
-                  {/* Image */}
-                  <div className={`relative lg:col-span-7 ${!isEven ? 'lg:col-start-6' : ''}`}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.4 }}
-                      className="relative overflow-hidden rounded-3xl shadow-2xl group cursor-pointer"
-                    >
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        <ImageWithFallback
-                          src={project.image}
-                          alt={project.title}
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Content */}
-                  <div className={`relative lg:col-span-5 ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                    <motion.div
-                      initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      className={`${isEven ? 'lg:pr-8' : 'lg:pl-8'}`}
-                    >
-                      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6 hover:font-black transition-all cursor-pointer">
-                        {project.title}
-                      </h2>
-                      <p className="text-lg sm:text-xl text-gray-800 mb-8 leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-3">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="inline-flex items-center rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-black uppercase tracking-wide hover:bg-[#8B5CF6] hover:text-white transition-colors"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </div>
+            <article id={`project-${index + 1}`} key={project.title} className="dna-gutter grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw] items-end scroll-mt-28">
+              <Reveal className={`lg:col-span-7 ${flip ? 'lg:col-start-6 lg:order-2' : ''}`}>
+                <div className="group aspect-[4/3] overflow-hidden rounded-[28px] md:rounded-[40px] bg-[var(--dna-gray-50)]">
+                  <ImageWithFallback src={project.image} alt={project.title} className="dna-img h-full w-full object-cover" />
                 </div>
+              </Reveal>
+
+              <div className={`lg:col-span-4 ${flip ? 'lg:col-start-1 lg:order-1' : 'lg:col-start-9'}`}>
+                <DyeText text={project.title} as="h2" className="dna-h2" />
+                <Reveal delay={0.15} className="dna-lead mt-6">
+                  {project.description}
+                </Reveal>
+                {/* Plain text, not pills — pills look like buttons but these are not interactive */}
+                <Reveal delay={0.25} className="dna-overline !leading-[1.9] text-[var(--dna-gray-600)] mt-8 whitespace-normal">
+                  {project.tags.join(' / ')}
+                </Reveal>
               </div>
-            </motion.div>
+            </article>
           );
         })}
-      </div>
+      </section>
 
-      {/* Bottom CTA Section */}
-      <div className="relative py-32 bg-gray-50">
-        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-xl text-gray-600 mb-10">
-              Let's create something extraordinary together
-            </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-black px-8 py-4 text-lg font-medium text-black hover:bg-[#8B5CF6] hover:text-white hover:border-[#8B5CF6] transition-all"
-            >
-              Get in Touch
-            </a>
-          </motion.div>
-        </div>
-      </div>
+      {/* CTA */}
+      <section className="sai-panel dna-section dna-gutter mb-[var(--dna-section)]">
+        <DyeText text={'Ready to Start\nYour Project?'} className="dna-h1" off="#8a8a8a" />
+        <Reveal delay={0.15} className="mt-8 flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
+          <p className="dna-lead">Let's create something extraordinary together</p>
+          <Link to="/contact" className="dna-cta self-start">
+            Get in Touch
+          </Link>
+        </Reveal>
+      </section>
     </div>
   );
 }

@@ -1,6 +1,10 @@
+import { useDocumentTitle } from '@/app/components/dna/useDocumentTitle';
 import { motion } from 'motion/react';
-import { Sparkles, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useState } from 'react';
+import { PageHero } from '@/app/components/dna/PageHero';
+import { DyeText } from '@/app/components/dna/DyeText';
+import { Reveal } from '@/app/components/dna/Reveal';
 
 const approaches = [
   {
@@ -53,176 +57,88 @@ const faqs = [
 ];
 
 export function ServicesPage() {
+  useDocumentTitle('Services');
+
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   return (
-    <div className="relative bg-white pt-20">
-      {/* Section 1: Design That Builds Brands */}
-      <div className="relative py-24 lg:py-32">
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Decorative sparkle icon */}
-          <div className="absolute top-0 right-6 lg:right-8">
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="rounded-lg bg-yellow-400 p-2"
-            >
-              <Sparkles className="h-6 w-6 text-black" />
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            {/* Left - Main Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-black leading-[0.9]">
-                Design That Builds Brands
-              </h2>
-            </motion.div>
-
-            {/* Right - Two columns of text */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:pt-12"
-            >
-              <div>
-                <p className="text-base leading-relaxed text-black font-medium">
-                  Great design is more than aesthetics. It is strategy, clarity, storytelling, and experience working in unison.
-                </p>
-              </div>
-              <div>
-                <p className="text-lg leading-relaxed text-gray-800">
-                  We turn ideas into meaningful brand identities, digital experiences, and visual narratives that leave a lasting impression.
-                </p>
-              </div>
-            </motion.div>
-          </div>
+    <div className="relative bg-[var(--sai-bg)]">
+      <PageHero video="clouds" lines={['Design That', 'Builds Brands']}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw]">
+          <p className="lg:col-span-4 lg:col-start-6 dna-lead">
+            Great design is more than aesthetics. It is strategy, clarity, storytelling, and experience working in unison.
+          </p>
+          <p className="lg:col-span-3 dna-body">
+            We turn ideas into meaningful brand identities, digital experiences, and visual narratives that leave a lasting impression.
+          </p>
         </div>
-      </div>
+      </PageHero>
 
-      {/* Section 2: Our Approach */}
-      <div className="relative py-24 lg:py-32 bg-gray-50">
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Left - Our Approach */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-black leading-[0.9] mb-8">
-                Our Approach
-              </h2>
-              <p className="text-base leading-relaxed text-gray-700">
-                Design is a process. We work collaboratively, exploring, testing, and iterating to create work that balances form and function.
-              </p>
-            </motion.div>
-
-            {/* Right - 2x2 Grid of Approach items */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-            >
-              {approaches.map((approach, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className="border-t-2 border-black pt-6"
-                >
-                  <h3 className="text-xl font-bold text-black mb-4 leading-tight">
-                    {approach.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-gray-700">
-                    {approach.description}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+      {/* 01. Our approach */}
+      <section className="dna-section !pt-[4vw] dna-gutter">
+        <div className="md:ml-[38%]">
+          <DyeText text={'Our\nApproach'} className="dna-h1" />
+          <Reveal delay={0.15} className="dna-lead mt-8 md:mt-10 max-w-xl">
+            Design is a process. We work collaboratively, exploring, testing, and iterating to create work that balances form and function.
+          </Reveal>
         </div>
-      </div>
 
-      {/* Section 3: FAQs */}
-      <div className="relative py-24 lg:py-32">
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Left - FAQ Heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-black leading-[0.9]">
-                FAQ's
-              </h2>
-            </motion.div>
+        <div className="mt-[12vw] md:mt-[8vw] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-[2.5vw]">
+          {approaches.map((approach, index) => (
+            <Reveal key={approach.title} delay={index * 0.15} className="sai-card h-full p-6 md:p-8">
+              <h3 className="dna-h3 mb-4">{approach.title}</h3>
+              <p className="dna-body text-[var(--dna-gray-800)]">{approach.description}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-            {/* Right - FAQ List */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6"
-            >
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className="border-b border-gray-200 pb-6"
-                >
+      {/* 02. FAQs */}
+      <section className="sai-panel dna-section dna-gutter">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-[4vw]">
+          <div className="lg:col-span-4">
+            <DyeText text="FAQ's" className="dna-h1" off="#8a8a8a" />
+          </div>
+
+          <ul className="lg:col-span-7 lg:col-start-6 border-t border-[var(--dna-gray-300)]">
+            {faqs.map((faq, index) => {
+              const open = openFaqIndex === index;
+              return (
+                <li key={index} className="border-b border-[var(--dna-gray-300)]">
                   <button
-                    onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                    className="w-full flex items-start justify-between gap-4 text-left group"
+                    type="button"
+                    onClick={() => setOpenFaqIndex(open ? null : index)}
+                    aria-expanded={open}
+                    aria-controls={`faq-panel-${index}`}
+                    id={`faq-button-${index}`}
+                    className="w-full flex items-start justify-between gap-6 py-7 text-left group"
                   >
-                    <span className="text-base font-medium text-black leading-relaxed group-hover:font-bold transition-all">
-                      {faq.question}
+                    <span className="flex gap-5">
+                      <span className="dna-index !text-[15px] !font-semibold text-[var(--dna-gray-600)] pt-1">{String(index + 1).padStart(2, '0')}.</span>
+                      <span className="text-[1.0625rem] font-medium leading-relaxed tracking-[0.02em]">{faq.question}</span>
                     </span>
-                    <motion.div
-                      animate={{ rotate: openFaqIndex === index ? 45 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex-shrink-0 mt-1"
-                    >
-                      <Plus className="h-5 w-5 text-black" />
-                    </motion.div>
+                    <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.4 }} className="shrink-0 mt-1">
+                      <Plus className="h-5 w-5" strokeWidth={1.25} />
+                    </motion.span>
                   </button>
                   <motion.div
+                    id={`faq-panel-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-button-${index}`}
+                    aria-hidden={!open}
                     initial={false}
-                    animate={{
-                      height: openFaqIndex === index ? 'auto' : 0,
-                      opacity: openFaqIndex === index ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                     className="overflow-hidden"
                   >
-                    <p className="text-sm leading-relaxed text-gray-700 mt-4 pr-8">
-                      {faq.answer}
-                    </p>
+                    <p className="dna-body text-[var(--dna-gray-800)] pb-8 pl-10 pr-8 max-w-[65ch]">{faq.answer}</p>
                   </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

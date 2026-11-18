@@ -1,165 +1,97 @@
-import { motion } from 'motion/react';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { ArrowUpRight, CornerDownRight } from 'lucide-react';
+import { Reveal } from '@/app/components/dna/Reveal';
 
+/** Dravintel's own Substack articles (cover images saved locally in public/insights). */
 const blogPosts = [
   {
-    title: '20 designatives',
-    subtitle: 'Celebrating 20 years',
-    background: 'bg-[#5B21B6]',
-    textColor: 'text-white',
-    displayNumber: '20',
-    image: null,
+    title: 'What even is UX anymore?',
+    subtitle: 'This question will change your perspective',
+    href: 'https://substack.com/home/post/p-208802533',
+    date: 'July 28, 2026',
+    image: '/insights/what-even-is-ux-anymore.jpg',
   },
   {
-    title: 'web summit',
-    subtitle: 'Brease at WebSummit 2024',
-    background: 'bg-black',
-    textColor: 'text-white',
-    displayNumber: null,
-    image: 'https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBzdW1taXQlMjB0ZWNoJTIwY29uZmVyZW5jZSUyMGNvbG9yZnVsfGVufDF8fHx8MTc2OTkwOTk5N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    title: 'Why UX Designers Should Avoid Horizontal Tabs on Product Pages',
+    subtitle:
+      'Baymard’s large-scale product page research consistently shows that horizontal tab layouts cause users to miss critical product information, even when they are actively looking for it.',
+    href: 'https://substack.com/home/post/p-206255080',
+    date: 'July 9, 2026',
+    image: '/insights/avoid-horizontal-tabs.jpg',
   },
   {
-    title: 'FAXX',
-    subtitle: 'Inside FOXX Season One',
-    background: 'bg-black',
-    textColor: 'text-white',
-    displayNumber: null,
-    image: 'https://images.unsplash.com/photo-1639628735078-ed2f038a193e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXRlJTIwY2FydG9vbiUyMGNoYXJhY3RlciUyMGF2YXRhcnMlMjBuZnR8ZW58MXx8fHwxNzY5OTA5OTk4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    title: 'From Pixel Pusher to System Architect',
+    subtitle: 'The design.md workflow that makes AI follow your rules, not its defaults',
+    href: 'https://substack.com/home/post/p-210854070',
+    date: 'August 12, 2026',
+    image: '/insights/pixel-pusher-to-system-architect.jpg',
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08
-    }
-  }
-};
-
-const wordVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-};
-
+/**
+ * SAI "Insights": a large rounded surface panel — heading + outline pill, then article rows
+ * (title and date left, summary right). Each row links to the Substack article.
+ */
 export function BlogSection() {
-  const headlineWords = "Thoughts, Insights & Updates".split(" ");
-
   return (
-    <section id="blog" className="relative py-24 bg-white">
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header section */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20">
-          {/* Left side - Large headline */}
-          <div className="relative lg:col-span-7">
-            <motion.h2
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, root: null }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black leading-[0.95]"
-            >
-              {headlineWords.map((word, i) => (
-                <motion.span
-                  key={i}
-                  variants={wordVariants}
-                  className="inline-block mr-3"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </motion.h2>
+    <section id="blog" aria-labelledby="insights-title" className="relative py-[calc(var(--dna-section)*0.5)]">
+      <div className="sai-panel min-[1480px]:mx-auto min-[1480px]:max-w-[1440px]">
+        <div className="dna-gutter py-[calc(var(--dna-section)*0.75)]">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <Reveal>
+                <h2 id="insights-title" className="dna-h2">
+                  Thoughts, <span className="sai-hl">insights</span> &amp; updates.
+                </h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="dna-lead mt-4 max-w-[46ch]">
+                  Some light reading on the things we're exploring, building, and talking about lately.
+                </p>
+              </Reveal>
+            </div>
+            <Reveal delay={0.15} className="shrink-0">
+              <a href="https://dravinteldesign1.substack.com" target="_blank" rel="noopener noreferrer" className="dna-btn">
+                <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
+                View all insights
+                <span className="sr-only"> (opens Substack in a new tab)</span>
+              </a>
+            </Reveal>
           </div>
 
-          {/* Right side - Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, root: null }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-5 flex items-start lg:pt-8"
-          >
-            <p className="text-base leading-relaxed text-gray-900">
-              Some light reading on the things we're exploring, building, and talking about lately.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Blog cards */}
-        <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post, index) => (
-            <motion.article
-              key={post.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, root: null }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group cursor-pointer relative overflow-hidden rounded-3xl ${post.background} aspect-[3/4] hover:scale-[1.02] transition-transform duration-300`}
-            >
-              {/* Background image if exists */}
-              {post.image && (
-                <div className="relative absolute inset-0">
-                  <ImageWithFallback
-                    src={post.image}
-                    alt={post.title}
-                    className="h-full w-full object-cover opacity-80"
-                  />
-                </div>
-              )}
-
-              {/* Large background number for first card */}
-              {post.displayNumber && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 0.2, scale: 1 }}
-                  viewport={{ once: true, root: null }}
-                  transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <span className="text-[280px] font-bold leading-none">
-                    {post.displayNumber}
-                  </span>
-                </motion.div>
-              )}
-
-              {/* Content */}
-              <div className="relative h-full flex flex-col justify-between p-8">
-                {/* Title at bottom */}
-                <div className="mt-auto">
-                  <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, root: null }}
-                    transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
-                    className={`text-4xl font-bold ${post.textColor} mb-2`}
-                  >
-                    {post.title}
-                  </motion.h3>
-                  {post.title === 'web summit' && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true, root: null }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
-                      className="inline-block mt-2"
-                    >
-                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-white">
-                        <path d="M20 5L35 32.5H5L20 5Z" fill="currentColor" stroke="currentColor" strokeWidth="2"/>
-                      </svg>
-                    </motion.div>
-                  )}
-                </div>
-              </div>
-            </motion.article>
-          ))}
+          <ul className="mt-10 md:mt-14">
+            {blogPosts.map((post, index) => (
+              <li key={post.href} className="border-t border-[var(--sai-line)] first:border-t-0">
+                <Reveal delay={index * 0.08}>
+                  <article className="group relative grid gap-6 py-10 md:py-14 lg:grid-cols-12 lg:gap-10">
+                    <div className="flex gap-5 lg:col-span-6">
+                      <img
+                        src={post.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="hidden sm:block h-20 w-32 shrink-0 rounded-xl object-cover md:h-24 md:w-40"
+                      />
+                      <div>
+                        <h3 className="text-[clamp(1.25rem,1.05rem+0.7vw,1.625rem)] font-medium leading-snug text-[var(--sai-head)] transition-colors group-hover:text-[var(--sai-accent)]">
+                          <a href={post.href} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0">
+                            {post.title}
+                            <span className="sr-only"> (opens Substack in a new tab)</span>
+                          </a>
+                        </h3>
+                        <p className="mt-3 text-[13px] text-[var(--sai-muted)]">{post.date}</p>
+                      </div>
+                    </div>
+                    <div className="self-center lg:col-span-5 lg:col-start-8">
+                      <p className="dna-body line-clamp-3">{post.subtitle}</p>
+                      <p aria-hidden="true" className="dna-link mt-4">
+                        Read on Substack <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} />
+                      </p>
+                    </div>
+                  </article>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

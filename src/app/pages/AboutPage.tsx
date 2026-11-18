@@ -1,4 +1,8 @@
-import { motion } from 'motion/react';
+import { useDocumentTitle } from '@/app/components/dna/useDocumentTitle';
+import { Link } from 'react-router-dom';
+import { PageHero } from '@/app/components/dna/PageHero';
+import { DyeText } from '@/app/components/dna/DyeText';
+import { Reveal } from '@/app/components/dna/Reveal';
 
 const principles = [
   {
@@ -23,193 +27,98 @@ const principles = [
   },
 ];
 
+/** Lime highlight (SAI emphasis words). */
+function Mark({ children }: { children: React.ReactNode }) {
+  return <span className="sai-hl font-medium">{children}</span>;
+}
+
 export function AboutPage() {
+  useDocumentTitle('About');
+
   return (
-    <div className="relative bg-white pt-20">
-      {/* Hero Section - Turning Thought Into Something Real */}
-      <div className="relative py-24 lg:py-32 bg-[#F5F5F5]">
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-20"
-          >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-black leading-tight mb-16">
-              Turning Thought<br />
-              Into Something Real
-            </h1>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16"
-          >
-            <div className="text-base lg:text-lg text-black leading-relaxed">
-              <p>
-                We're a team of designers, developers, and thinkers who care deeply about craft and clarity.
-              </p>
-            </div>
-            <div className="text-base lg:text-lg text-black leading-relaxed">
-              <p>
-                Working from Chennai, we build brands with bold ideas, striking visuals, and seamless digital experiences.
-              </p>
-            </div>
-            <div className="text-base lg:text-lg text-black leading-relaxed">
-              <p>
-                We experiment, refine, and build work that stands out for its intention, quality, and personality.
-              </p>
-            </div>
-          </motion.div>
+    <div className="relative bg-[var(--sai-bg)]">
+      <PageHero video="road" lines={['Turning Thought', 'Into Something', 'Real']}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw] dna-body">
+          <p className="lg:col-span-3 lg:col-start-4">
+            We're a team of designers, developers, and thinkers who care deeply about craft and clarity.
+          </p>
+          <p className="lg:col-span-3">
+            Working from Chennai, we build brands with bold ideas, striking visuals, and seamless digital experiences.
+          </p>
+          <p className="lg:col-span-3">
+            We experiment, refine, and build work that stands out for its intention, quality, and personality.
+          </p>
         </div>
-      </div>
+      </PageHero>
 
-      {/* Who We Are Section */}
-      <div className="relative py-24 lg:py-32 bg-white">
-        <div className="relative mx-auto max-w-5xl px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-12">
-              Who We Are
-            </h2>
-
-            <div className="text-xl sm:text-2xl lg:text-3xl text-black leading-relaxed space-y-6">
-              <p>
-                <span className="bg-[#8B5CF6] text-white px-2 py-1">Dravintel Design</span> is a design and technology studio built on a simple idea.
-              </p>
-              <p>
-                <span className="bg-[#8B5CF6] text-white px-2 py-1">Good work matters.</span> We care about clarity, craft, and the details that shape,{' '}
-                <span className="bg-[#8B5CF6] text-white px-2 py-1">how people experience a brand.</span>
-              </p>
-              <p className="mt-8">
-                We work with startups and established companies, who value,{' '}
-                <span className="bg-[#8B5CF6] text-white px-2 py-1">thoughtful design</span> and honest execution.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* How We Work Section */}
-      <div className="relative py-24 lg:py-32 bg-[#F5F5F5]">
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Left Side - Heading and Description */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-5"
-            >
-              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black mb-8">
-                How we<br />work
-              </h2>
-              <p className="text-base text-black leading-relaxed max-w-md">
-                We believe great work is the result of clarity, intention, and a willingness to explore. Every project begins with understanding, grows through collaboration, and evolves through thoughtful iteration. Our approach blends strategy, design, and technology with precision, and a drive to do things the right way, not the easy way. This is how we build work that stands up to time and delivers real impact.
-              </p>
-            </motion.div>
-
-            {/* Right Side - Principle Cards */}
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-                {principles.map((principle, index) => (
-                  <motion.div
-                    key={principle.number}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.15 }}
-                    className="relative bg-white rounded-3xl border-2 border-black p-8 h-full flex flex-col"
-                  >
-                    <div className="text-sm font-medium text-gray-600 mb-4">
-                      {principle.number}
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4 leading-tight">
-                      {principle.title}
-                    </h3>
-                    <p className="text-base text-black leading-relaxed mt-auto">
-                      {principle.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Always Pushing Forward Section */}
-      <div className="relative min-h-screen flex items-center bg-black py-24 lg:py-32">
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Large Heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-6"
-            >
-              <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold text-white leading-[1.1]">
-                Always<br />
-                pushing<br />
-                forward
-              </h2>
-            </motion.div>
-
-            {/* Two Column Text */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-6"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-lg lg:text-xl text-white leading-relaxed">
-                <p className="font-bold">
-                  We believe progress comes from curiosity and a willingness to try something new. Every project is an opportunity to refine our craft and explore what could be better.
-                </p>
-                <p>
-                  We stay open, stay hungry, and look for ideas that move us forward. When something has potential, we bring it to life with clarity and care, shaping it into work that feels meaningful.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom CTA Section */}
-      <div className="relative py-32 bg-white">
-        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-6">
-              Let's Build Something Together
-            </h2>
-            <p className="text-xl text-gray-600 mb-10">
-              Ready to bring your vision to life?
+      {/* 01. Who we are — offset chapter */}
+      <section className="dna-section dna-gutter">
+        <div className="md:ml-[38%]">
+          <DyeText text={'Who\nWe Are'} className="dna-h1" />
+          <Reveal delay={0.15} className="mt-10 md:mt-14 space-y-6 text-[clamp(1.25rem,2vw,1.875rem)] leading-[1.6] text-[var(--sai-head)]">
+            <p>
+              <Mark>Dravintel Design</Mark> is a design and technology studio built on a simple idea.
             </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-black px-8 py-4 text-lg font-medium text-black hover:bg-[#8B5CF6] hover:text-white hover:border-[#8B5CF6] transition-all"
-            >
-              Get in Touch
-            </a>
-          </motion.div>
+            <p>
+              <Mark>Good work matters.</Mark> We care about clarity, craft, and the details that shape,{' '}
+              <Mark>how people experience a brand.</Mark>
+            </p>
+            <p>
+              We work with startups and established companies, who value, <Mark>thoughtful design</Mark> and honest execution.
+            </p>
+          </Reveal>
         </div>
-      </div>
+      </section>
+
+      {/* 02. How we work */}
+      <section className="dna-section !pt-0 dna-gutter">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-[4vw]">
+          <div className="lg:col-span-5">
+            <DyeText text={'How we\nwork'} className="dna-h1" />
+            <Reveal delay={0.15} className="dna-body mt-10 max-w-md text-[var(--dna-gray-800)]">
+              We believe great work is the result of clarity, intention, and a willingness to explore. Every project begins with understanding, grows through collaboration, and evolves through thoughtful iteration. Our approach blends strategy, design, and technology with precision, and a drive to do things the right way, not the easy way. This is how we build work that stands up to time and delivers real impact.
+            </Reveal>
+          </div>
+
+          <ul className="lg:col-span-6 lg:col-start-7 border-t border-[var(--dna-gray-200)] self-end">
+            {principles.map((p, index) => (
+              <li key={p.number} className="border-b border-[var(--dna-gray-200)]">
+                <Reveal delay={index * 0.1} className="grid grid-cols-12 gap-4 py-8 md:py-10">
+                  <span className="col-span-2 dna-index !text-[15px] !font-semibold text-[var(--dna-gray-600)]">0{p.number}.</span>
+                  <div className="col-span-10">
+                    <h3 className="dna-h3 mb-3">{p.title}</h3>
+                    <p className="dna-body text-[var(--dna-gray-800)]">{p.description}</p>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 03. Always pushing forward — inverted */}
+      <section className="bg-[var(--dna-ink)] text-white dna-section dna-gutter">
+        <DyeText text={'Always\npushing\nforward'} className="dna-display" on="#ffffff" off="#7a7a7a" />
+        <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw]">
+          <Reveal className="lg:col-span-4 lg:col-start-6 dna-lead">
+            We believe progress comes from curiosity and a willingness to try something new. Every project is an opportunity to refine our craft and explore what could be better.
+          </Reveal>
+          <Reveal delay={0.15} className="lg:col-span-3 dna-body">
+            We stay open, stay hungry, and look for ideas that move us forward. When something has potential, we bring it to life with clarity and care, shaping it into work that feels meaningful.
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="dna-section dna-gutter">
+        <DyeText text={"Let's Build Something\nTogether"} className="dna-h2" />
+        <Reveal delay={0.15} className="mt-8 flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
+          <p className="dna-lead">Ready to bring your vision to life?</p>
+          <Link to="/contact" className="dna-cta self-start">
+            Get in Touch
+          </Link>
+        </Reveal>
+      </section>
     </div>
   );
 }

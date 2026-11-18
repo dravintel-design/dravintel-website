@@ -46,7 +46,7 @@ export function FreeAuditModal({ isOpen, onClose }: FreeAuditModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm"
+            className="fixed inset-0 bg-white/70 z-50"
           />
 
           {/* Modal */}
@@ -57,21 +57,21 @@ export function FreeAuditModal({ isOpen, onClose }: FreeAuditModalProps) {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
-            <div className="bg-[#8B5CF6] rounded-2xl shadow-2xl max-w-2xl w-full p-10 pointer-events-auto relative">
+            <div data-lenis-prevent className="bg-black text-white max-w-2xl w-full p-8 md:p-12 pointer-events-auto relative max-h-[90svh] overflow-y-auto">
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+                aria-label="Close" className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
 
               {/* Header */}
               <div className="mb-8">
-                <h2 className="text-4xl font-bold text-white mb-3">
+                <h2 className="dna-h2 text-white mb-5">
                   Let's Start Free
                 </h2>
-                <p className="text-lg text-white/90">
+                <p className="dna-body text-white/70">
                   Get a free website audit and consultation. We'll review your site and provide actionable insights.
                 </p>
               </div>
@@ -80,7 +80,7 @@ export function FreeAuditModal({ isOpen, onClose }: FreeAuditModalProps) {
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-white mb-1">
+                  <label htmlFor="name" className="block dna-overline text-white/60 mb-1">
                     Name *
                   </label>
                   <input
@@ -90,14 +90,14 @@ export function FreeAuditModal({ isOpen, onClose }: FreeAuditModalProps) {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full bg-transparent border-0 border-b border-white/30 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white hover:border-white transition-colors"
                     placeholder="Your name"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
+                  <label htmlFor="email" className="block dna-overline text-white/60 mb-1">
                     Email *
                   </label>
                   <input
@@ -107,14 +107,14 @@ export function FreeAuditModal({ isOpen, onClose }: FreeAuditModalProps) {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full bg-transparent border-0 border-b border-white/30 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white hover:border-white transition-colors"
                     placeholder="your@email.com"
                   />
                 </div>
 
                 {/* Phone */}
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-white mb-1">
+                  <label htmlFor="phone" className="block dna-overline text-white/60 mb-1">
                     Phone Number *
                   </label>
                   <input
@@ -124,14 +124,14 @@ export function FreeAuditModal({ isOpen, onClose }: FreeAuditModalProps) {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full bg-transparent border-0 border-b border-white/30 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white hover:border-white transition-colors"
                     placeholder="+91 12345 67890"
                   />
                 </div>
 
                 {/* Website (Optional) */}
                 <div>
-                  <label htmlFor="website" className="block text-sm font-medium text-white mb-1">
+                  <label htmlFor="website" className="block dna-overline text-white/60 mb-1">
                     Website Link <span className="text-white/60">(Optional)</span>
                   </label>
                   <input
@@ -140,7 +140,7 @@ export function FreeAuditModal({ isOpen, onClose }: FreeAuditModalProps) {
                     name="website"
                     value={formData.website}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full bg-transparent border-0 border-b border-white/30 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white hover:border-white transition-colors"
                     placeholder="https://yourwebsite.com"
                   />
                 </div>
@@ -148,14 +148,14 @@ export function FreeAuditModal({ isOpen, onClose }: FreeAuditModalProps) {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-white text-[#8B5CF6] py-3 rounded-full font-medium hover:bg-white/90 transition-all mt-6"
+                  className="dna-btn dna-btn--invert w-full mt-8"
                 >
                   Get Free Audit
                 </button>
               </form>
 
               {/* Footer note */}
-              <p className="text-xs text-white/70 text-center mt-4">
+              <p className="dna-small text-white/50 text-center mt-5">
                 We'll review your information and get back to you within 24 hours.
               </p>
             </div>

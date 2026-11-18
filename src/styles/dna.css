@@ -1,0 +1,404 @@
+/*
+ * Design DNA — Dravintel × SAI Digital-inspired system.
+ * Source of truth: /design-dna/dravintel.design-dna.json
+ * Deep navy canvas, Montserrat throughout, uppercase gradient hero type, a single
+ * lime accent for highlight words and pill CTAs, 20/40px rounded cards, white footer.
+ * Class names are kept from the previous system so every page picks up the new look.
+ */
+
+:root {
+  /* ---- Brand palette ---- */
+  --sai-bg: #00182e; /* page canvas (brand) */
+  --sai-bg-deep: #001224; /* darker bands */
+  --sai-surface: #0a2740; /* rounded panels & cards */
+  --sai-surface-2: #0f3150;
+  --sai-accent: #acec00; /* brand secondary — highlights, primary pills (12.7:1 on navy) */
+  --sai-accent-hover: #c2f533;
+  --sai-accent-ink: #00182e; /* text on accent */
+  --sai-head: #eefbd2; /* lime-tinted white for headings */
+  --sai-text: #ffffff;
+  --sai-body: #c3cdd8; /* 10:1 on navy */
+  --sai-muted: #9aabbd; /* 7.2:1 on navy */
+  --sai-line: rgba(255, 255, 255, 0.14);
+  --sai-card-line: rgba(172, 236, 0, 0.38);
+  --sai-glow: rgba(172, 236, 0, 0.16);
+  --sai-glow-teal: rgba(47, 217, 200, 0.14);
+  --sai-radius-card: 20px;
+  --sai-radius-panel: 40px;
+  --sai-grad-head: linear-gradient(100deg, #f4fde0 0%, #dcf7a0 45%, #acec00 100%);
+
+  /* ---- Legacy aliases (used across pages) mapped to the dark system ---- */
+  --dna-ink: var(--sai-bg-deep);
+  --dna-ink-2: var(--sai-surface);
+  --dna-white: #ffffff;
+  --dna-paper: var(--sai-surface);
+  --dna-rule: var(--sai-line);
+  --dna-rule-dark: var(--sai-line);
+  --dna-muted: var(--sai-muted);
+  --dna-muted-dark: var(--sai-muted);
+  --dna-accent: var(--sai-accent);
+  --dna-black: var(--sai-bg-deep);
+  --dna-gray-50: var(--sai-surface);
+  --dna-gray-200: var(--sai-line);
+  --dna-gray-300: rgba(255, 255, 255, 0.2);
+  --dna-gray-400: var(--sai-muted);
+  --dna-gray-600: var(--sai-muted);
+  --dna-gray-800: var(--sai-body);
+  --dna-placeholder: #8597a9; /* 5.9:1 on navy */
+  --dna-rule-strong: rgba(255, 255, 255, 0.4);
+
+  --dna-font: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --dna-font-serif: var(--dna-font);
+  --dna-font-lead: var(--dna-font);
+
+  --dna-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dna-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dna-dur-micro: 300ms;
+  --dna-dur: 600ms;
+  --dna-dur-macro: 1000ms;
+
+  /* Container gutter + section padding */
+  --dna-gutter: 20px;
+  --dna-pad: 40px;
+  --dna-section: 72px;
+}
+@media (min-width: 768px) {
+  :root { --dna-gutter: 40px; --dna-pad: 60px; --dna-section: 96px; }
+}
+@media (min-width: 1024px) {
+  :root { --dna-gutter: 60px; --dna-pad: 80px; --dna-section: 120px; }
+}
+
+html {
+  scroll-padding-top: 7.5rem;
+  background: var(--sai-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--sai-accent) !important;
+  outline-offset: 3px;
+}
+
+body {
+  background: var(--sai-bg);
+  color: var(--sai-text);
+  font-family: var(--dna-font);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--sai-accent);
+  color: var(--sai-accent-ink);
+}
+
+@layer components {
+/* ---------- Layout ---------- */
+.dna-gutter {
+  padding-left: var(--dna-gutter);
+  padding-right: var(--dna-gutter);
+}
+.dna-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+.dna-section {
+  padding-top: var(--dna-section);
+  padding-bottom: var(--dna-section);
+}
+.dna-panel {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--dna-pad) var(--dna-gutter);
+}
+.dna-dark {
+  background: var(--sai-bg-deep);
+  color: var(--sai-text);
+}
+.dna-light {
+  background: var(--sai-surface);
+  color: var(--sai-text);
+}
+/* Rounded inset panel (SAI "Insights" container) */
+.sai-panel {
+  background: var(--sai-surface);
+  border-radius: var(--sai-radius-panel);
+  margin-inline: 12px;
+}
+@media (min-width: 768px) { .sai-panel { margin-inline: 20px; } }
+
+/* Soft brand glows used behind sections */
+.sai-glow {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  background: radial-gradient(circle, var(--sai-glow) 0%, transparent 70%);
+}
+.sai-glow--teal { background: radial-gradient(circle, var(--sai-glow-teal) 0%, transparent 70%); }
+
+/* ---------- Type scale (Montserrat) ---------- */
+/* Hero / page titles: uppercase with lime-tinted gradient fill */
+.dna-display {
+  font-family: var(--dna-font);
+  font-weight: 600;
+  font-size: clamp(2.125rem, 1.2rem + 4.2vw, 5rem);
+  line-height: 1.12;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--sai-head);
+}
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .dna-display {
+    background: var(--sai-grad-head);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+}
+.dna-h1 {
+  font-family: var(--dna-font);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.3rem + 2.8vw, 4rem); /* 32 → 64 */
+  line-height: 1.16;
+  letter-spacing: -0.005em;
+  color: var(--sai-head);
+}
+.dna-h2 {
+  font-weight: 500;
+  font-size: clamp(1.625rem, 1.25rem + 1.3vw, 2.5rem); /* 26 → 40 */
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  color: var(--sai-head);
+}
+.dna-h3 {
+  font-weight: 600;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.625rem); /* 20 → 26 */
+  line-height: 1.3;
+  color: var(--sai-text);
+}
+.dna-em,
+.sai-hl {
+  color: var(--sai-accent);
+  -webkit-text-fill-color: var(--sai-accent);
+}
+.dna-lead {
+  font-weight: 400;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); /* 17 → 20 */
+  line-height: 1.6;
+  color: var(--sai-body);
+}
+.dna-body {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--sai-body);
+}
+.dna-small {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.55;
+}
+.dna-overline,
+.dna-tag {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.dna-index {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--sai-text);
+}
+
+/* ---------- Links & buttons ---------- */
+.dna-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--sai-accent);
+}
+.dna-link svg { transition: transform var(--dna-dur-micro) var(--dna-ease); }
+.dna-link:hover svg { transform: translate(2px, -2px); }
+.dna-arrow {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  transition: transform var(--dna-dur-micro) var(--dna-ease);
+}
+.dna-arrow:hover { transform: translateX(6px); }
+
+/* Outline pill (SAI secondary): white hairline, fills lime on hover */
+.dna-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75em;
+  min-height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 40px;
+  padding: 0.65em 1.6em;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--sai-text);
+  background-color: transparent;
+  transition:
+    background-color var(--dna-dur-micro) var(--dna-ease),
+    border-color var(--dna-dur-micro) var(--dna-ease),
+    color var(--dna-dur-micro) var(--dna-ease);
+}
+.dna-btn:hover,
+.dna-btn[aria-pressed='true'] {
+  background-color: var(--sai-accent);
+  border-color: var(--sai-accent);
+  color: var(--sai-accent-ink);
+}
+.dna-btn:disabled { opacity: 0.4; pointer-events: none; }
+.dna-btn--invert { color: var(--sai-text); }
+/* Solid white pill (SAI "About Us") */
+.dna-btn--white {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--sai-accent-ink);
+}
+
+/* Primary pill (SAI teal → Dravintel lime) */
+.dna-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75em;
+  min-height: 48px;
+  padding: 0.7em 1.75em;
+  border-radius: 40px;
+  background: var(--sai-accent);
+  color: var(--sai-accent-ink);
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color var(--dna-dur-micro) var(--dna-ease), transform var(--dna-dur-micro) var(--dna-ease), box-shadow var(--dna-dur-micro);
+}
+.dna-cta:hover {
+  background-color: var(--sai-accent-hover);
+  box-shadow: 0 0 32px rgba(172, 236, 0, 0.35);
+}
+
+.dna-nav-link {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color var(--dna-dur-micro) var(--dna-ease), color var(--dna-dur-micro);
+}
+.dna-nav-link:hover,
+.dna-nav-link.active {
+  text-decoration-color: currentColor;
+}
+
+/* ---------- Cards ---------- */
+.sai-card {
+  position: relative;
+  border-radius: var(--sai-radius-card);
+  border: 1px solid var(--sai-card-line);
+  background: linear-gradient(180deg, rgba(0, 18, 36, 0.6) 0%, rgba(10, 39, 64, 0.85) 100%);
+  transition: border-color var(--dna-dur) var(--dna-ease), transform var(--dna-dur) var(--dna-ease), box-shadow var(--dna-dur);
+}
+.sai-card:hover {
+  border-color: var(--sai-accent);
+  box-shadow: 0 0 40px rgba(172, 236, 0, 0.12);
+}
+
+/* ---------- Form fields ---------- */
+.dna-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--dna-rule-strong);
+  border-radius: 0;
+  padding: 0.6rem 0 0.9rem;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: inherit;
+  transition: border-color var(--dna-dur-micro) var(--dna-ease);
+}
+.dna-input::placeholder { color: var(--dna-placeholder); }
+.dna-input:hover,
+.dna-input:focus { border-bottom-color: var(--sai-accent); }
+.dna-input:focus { outline: none; box-shadow: 0 1px 0 0 var(--sai-accent); }
+.dna-input:focus-visible { outline: 2px solid var(--sai-accent) !important; outline-offset: 4px; }
+.dna-label {
+  display: block;
+  margin-top: 1.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sai-muted);
+}
+
+/* ---------- Media ---------- */
+.dna-img {
+  transition: transform 1.2s var(--dna-ease-out);
+}
+.group:hover .dna-img,
+.dna-img:hover {
+  transform: scale(1.04);
+}
+} /* end @layer components */
+
+/* ---------- Carousel (scroll-snap) ---------- */
+.sai-track {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.sai-track::-webkit-scrollbar { display: none; }
+.sai-track > * { scroll-snap-align: start; }
+
+/* ---------- Marquee ---------- */
+@keyframes dna-marquee {
+  to { transform: translateX(-50%); }
+}
+.dna-marquee {
+  animation: dna-marquee 40s linear infinite;
+}
+.dna-marquee-wrap:hover .dna-marquee,
+.dna-marquee-wrap:focus-within .dna-marquee,
+.dna-marquee[data-paused='true'] {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dna-marquee { animation: none; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Lenis smooth scroll (required base styles) ── */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth iframe { pointer-events: none; }

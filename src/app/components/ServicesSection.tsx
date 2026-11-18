@@ -1,4 +1,15 @@
-import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
+import { Bot, Code2, CornerDownRight, Factory, Layers, MousePointerClick, Users, type LucideIcon } from 'lucide-react';
+import { Reveal } from '@/app/components/dna/Reveal';
+
+const icons: Record<string, LucideIcon> = {
+  'UX UI Design': MousePointerClick,
+  'Product Design': Layers,
+  'Industrial Design': Factory,
+  'Web Development': Code2,
+  'AI Automation': Bot,
+  'Business Workshops': Users,
+};
 
 const services = [
   {
@@ -33,155 +44,55 @@ const services = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const wordVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-};
-
+/**
+ * SAI "Services": heading left with a lime highlight and an outline pill right, then tall
+ * rounded cards with a hairline lime border — number top-left, line icon, title, description.
+ */
 export function ServicesSection() {
   return (
-    <section id="services" className="relative py-24 bg-white">
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header section */}
-        <div className="relative mb-20">
-          <div className="relative pb-16 border-b border-gray-200">
-            {/* Main headline - left side */}
-            {/* Main headline - left side - Staggered Character Animation */}
-            <motion.h2
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black leading-[1.1] mb-12 flex flex-wrap gap-x-[0.2em] gap-y-2"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.03
-                  }
-                }
-              }}
-            >
-              {"Helping businesses stand out, not blend in".split(" ").map((word, i) => (
-                <span key={i} className="inline-block whitespace-nowrap">
-                  {word.split("").map((char, index) => (
-                    <motion.span
-                      key={index}
-                      className="inline-block"
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: {
-                          opacity: 1,
-                          y: 0,
-                          transition: {
-                            type: "spring",
-                            damping: 12,
-                            stiffness: 100
-                          }
-                        }
-                      }}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                  {/* Add a non-breaking space after words unless it's the last word (handled by flex gap, but ensuring space for copy/paste if needed, though flex gap handles visual) */}
-                </span>
-              ))}
-            </motion.h2>
-
-            {/* Description - two columns below headline */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-4xl ml-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, root: null }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                <p className="text-base leading-relaxed text-gray-900">
-                  Each project reflects the strategy, craft, and attention to detail we bring from the first sketch to the final release. Nothing is rushed. Everything is intentional.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, root: null }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <p className="text-base leading-relaxed text-gray-900">
-                  These aren't just deliverables; they're the result of late-night thinking, tight feedback loops, and a belief that great design should never blend in.
-                </p>
-              </motion.div>
-            </div>
+    <section id="services" aria-labelledby="services-title" className="relative dna-section overflow-hidden">
+      <div aria-hidden="true" className="sai-glow right-[-10%] bottom-[-10%] h-[520px] w-[720px]" />
+      <div className="dna-container dna-gutter relative">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-[44rem]">
+            <Reveal>
+              <h2 id="services-title" className="dna-h2">
+                Helping businesses <span className="sai-hl">stand out</span>, not blend in.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="dna-lead mt-5">
+                Each project reflects the strategy, craft, and attention to detail we bring from the first sketch to the final release. Nothing is rushed. Everything is intentional.
+              </p>
+            </Reveal>
           </div>
+          <Reveal delay={0.15} className="shrink-0">
+            <Link to="/services" className="dna-btn">
+              <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
+              Explore all services
+            </Link>
+          </Reveal>
         </div>
 
-        {/* Services list */}
-        <div className="relative space-y-0">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, root: null }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group border-t border-gray-200 py-12 first:border-t-0 hover:bg-gray-50/50 transition-colors duration-300"
-            >
-              <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-                {/* Left side - Number and Title */}
-                <div className="relative lg:col-span-7">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, root: null }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.1 }}
-                    className="text-sm text-gray-500 mb-3"
-                  >
-                    {service.number}
-                  </motion.div>
-                  <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, root: null }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                    className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight group-hover:font-black transition-all"
-                  >
-                    {service.title}
-                  </motion.h3>
-                </div>
-
-                {/* Right side - Description */}
-                <div className="lg:col-span-5 flex items-start lg:pt-8">
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, root: null }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                    className="text-lg leading-relaxed text-gray-800"
-                  >
-                    {service.description}
-                  </motion.p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <ul className="mt-12 md:mt-16 grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((s, i) => {
+            const Icon = icons[s.title];
+            return (
+              <li key={s.title}>
+                <Reveal delay={(i % 3) * 0.1} className="h-full">
+                  <Link to="/services" className="sai-card group flex h-full min-h-[340px] md:min-h-[400px] flex-col p-6 md:p-8">
+                    <span className="dna-index" aria-hidden="true">{s.number}</span>
+                    <div className="mt-auto pt-16">
+                      {Icon && <Icon className="h-9 w-9 text-[var(--sai-accent)]" strokeWidth={1.25} aria-hidden="true" />}
+                      <h3 className="dna-h3 mt-5">{s.title}</h3>
+                      <p className="dna-body mt-3">{s.description}</p>
+                    </div>
+                  </Link>
+                </Reveal>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

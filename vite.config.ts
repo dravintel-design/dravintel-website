@@ -21,4 +21,8 @@ export default defineConfig({
     },
   },
   assetsInclude: ['**/*.svg', '**/*.csv'],
+  server: {
+    // Large source videos/backups aren't part of the app; watching them can crash on Windows (EBUSY)
+    watch: { ignored: ['**/Videos/**', '**/backups/**'] },
+  },
 })

@@ -1,213 +1,157 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
-import logoImage from '@/assets/logobig.svg';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { ArrowUpToLine, CornerDownRight, Instagram, Youtube } from 'lucide-react';
+import logo from '@/assets/dravintel-logo.png';
+import { Reveal } from '@/app/components/dna/Reveal';
+import { scrollToTarget } from '@/app/components/dna/SmoothScroll';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05
-    }
-  }
-};
+const whatWeDo = [
+  { name: 'UX UI Design', path: '/services' },
+  { name: 'Product Design', path: '/services' },
+  { name: 'Web Development', path: '/services' },
+  { name: 'AI Automation', path: '/services' },
+];
+const about = [
+  { name: 'Our Work', path: '/work' },
+  { name: 'About Us', path: '/about' },
+  { name: 'Services', path: '/services' },
+  { name: 'Contact', path: '/contact' },
+];
+const socials = [
+  { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/dravintel_design?igsh=MTh0azV1dWlsamhubw%3D%3D&utm_source=qr' },
+  { name: 'YouTube', icon: Youtube, href: 'https://youtube.com/@dravintelux?si=SHiBF1NJBIc3h9Qz' },
+];
 
-const wordVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-};
+/** Live Chennai time (HH:MM), refreshed on the minute — SAI's office clock chips. */
+function useChennaiTime() {
+  const fmt = () =>
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }).format(new Date());
+  const [time, setTime] = useState(fmt);
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>;
+    const schedule = () => {
+      t = setTimeout(() => {
+        setTime(fmt());
+        schedule();
+      }, 60000 - (Date.now() % 60000));
+    };
+    schedule();
+    return () => clearTimeout(t);
+  }, []);
+  return time;
+}
+
+function FooterHeading({ children, id }: { children: string; id?: string }) {
+  return (
+    <h2 id={id} className="mb-6 text-[15px] font-semibold uppercase tracking-[0.02em] text-[var(--sai-bg)]">
+      {children}
+    </h2>
+  );
+}
 
 export function Footer() {
-  const footerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: footerRef,
-    offset: ["start end", "end end"]
-  });
-
-  // Transform scroll progress to background color
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    ["rgb(255, 255, 255)", "rgb(139, 92, 246)"]
-  );
-
-  const textColor = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    ["rgb(0, 0, 0)", "rgb(255, 255, 255)"]
-  );
-
-  const headlineWords = "Let's Create Something That Lasts".split(" ");
+  const { pathname } = useLocation();
+  const onContact = pathname === '/contact';
+  const time = useChennaiTime();
 
   return (
-    <motion.footer
-      ref={footerRef}
-      id="contact"
-      style={{ backgroundColor }}
-      className="relative overflow-hidden"
-    >
-      <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-        {/* Main Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, root: null }}
-          transition={{ duration: 0.8 }}
-          className="mb-24"
-        >
-          <motion.h2
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, root: null }}
-            style={{ color: textColor }}
-            className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[0.95] mb-16"
-          >
-            {headlineWords.map((word, i) => (
-              <motion.span
-                key={i}
-                variants={wordVariants}
-                className="inline-block mr-4"
-              >
-                {word}
-                {i === 2 && <br />}
-              </motion.span>
-            ))}
-          </motion.h2>
-
-          {/* Contact Information Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 mb-16">
-            {/* Contact Us */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, root: null }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <motion.div
-                style={{ color: textColor }}
-                className="text-xs uppercase tracking-wider mb-3 opacity-70"
-              >
-                CONTACT US
-              </motion.div>
-              <motion.a
-                href="mailto:founder@dravintel.com"
-                style={{ color: textColor }}
-                className="text-lg hover:opacity-70 transition-opacity"
-              >
-                founder@dravintel.com
-              </motion.a>
-            </motion.div>
-
-            {/* Visit Us */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, root: null }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <motion.div
-                style={{ color: textColor }}
-                className="text-xs uppercase tracking-wider mb-3 opacity-70"
-              >
-                VISIT US
-              </motion.div>
-              <motion.div
-                style={{ color: textColor }}
-                className="text-lg"
-              >
-                Innov8, The Address<br />
-                Radial Ring Road, Pallavaram, Chennai
-              </motion.div>
-            </motion.div>
-
-            {/* Follow Us */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, root: null }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <motion.div
-                style={{ color: textColor }}
-                className="text-xs uppercase tracking-wider mb-3 opacity-70"
-              >
-                FOLLOW US
-              </motion.div>
-              <div className="flex gap-3">
-                <a
-                  href="https://www.instagram.com/dravintel_design?igsh=MTh0azV1dWlsamhubw%3D%3D&utm_source=qr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-white px-5 py-2 text-sm text-[#8B5CF6] hover:bg-white/90 transition-colors uppercase tracking-wide font-medium"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="https://youtube.com/@dravintelux?si=SHiBF1NJBIc3h9Qz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-white px-5 py-2 text-sm text-[#8B5CF6] hover:bg-white/90 transition-colors uppercase tracking-wide font-medium"
-                >
-                  YouTube
-                </a>
-              </div>
-            </motion.div>
+    <>
+      {/* SAI closing CTA: big centred statement with a lime highlight + primary pill */}
+      {!onContact && (
+        <section aria-labelledby="cta-title" className="relative overflow-hidden bg-[var(--sai-bg)] py-[calc(var(--dna-section)*1.3)] text-center">
+          <div aria-hidden="true" className="sai-glow left-1/2 top-1/2 h-[420px] w-[820px] -translate-x-1/2 -translate-y-1/2" />
+          <div className="dna-container dna-gutter relative">
+            <Reveal>
+              <h2 id="cta-title" className="dna-h1 mx-auto max-w-[18ch] !text-[clamp(2.25rem,1.4rem+3.6vw,4.5rem)]">
+                Let's <span className="sai-hl">create</span> something that lasts.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.15} className="mt-10">
+              <Link to="/contact" className="dna-cta">
+                Let's Talk
+              </Link>
+            </Reveal>
           </div>
-        </motion.div>
+        </section>
+      )}
 
-        {/* Large Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, root: null }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative mb-12"
-        >
-          <motion.img
-            src={logoImage}
-            alt="Dravintel"
-            style={{
-              filter: useTransform(
-                scrollYProgress,
-                [0, 0.5],
-                ["brightness(0)", "brightness(0) invert(1)"]
-              )
-            }}
-            className="w-full max-w-4xl"
-          />
-        </motion.div>
+      <footer id="contact" className="relative z-10 bg-white text-[var(--sai-bg)]">
+        <div className="dna-container px-5 md:px-[52px] pt-16 md:pt-20 pb-10">
+          <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+            <Link to="/" aria-label="Dravintel Design — home" className="self-start">
+              <img src={logo} alt="" width={399} height={109} className="h-11 md:h-12 w-auto max-w-none object-contain" />
+            </Link>
+            <div className="md:text-right">
+              <FooterHeading>Join our network</FooterHeading>
+              <ul className="flex gap-3 md:justify-end">
+                {socials.map(({ name, icon: Icon, href }) => (
+                  <li key={name}>
+                    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={`${name} (opens in a new tab)`} className="grid h-11 w-11 place-items-center rounded-full transition-colors hover:bg-[var(--sai-bg)] hover:text-white">
+                      <Icon className="h-6 w-6" strokeWidth={1.75} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
-        {/* Bottom Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, root: null }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-between text-sm"
-        >
-          <motion.a
-            href="#privacy"
-            style={{ color: textColor }}
-            className="hover:opacity-70 transition-opacity underline"
-          >
-            Privacy Policy
-          </motion.a>
-          <motion.div
-            style={{ color: textColor }}
-            className="opacity-70"
-          >
-            © Dravintel Design 2026. All Rights Reserved.
-          </motion.div>
-        </motion.div>
-      </div>
-    </motion.footer>
+          <div className="mt-12 md:mt-14 grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-4">
+            <nav aria-labelledby="ft-what">
+              <FooterHeading id="ft-what">What we do</FooterHeading>
+              <ul className="space-y-3 text-[15px]">
+                {whatWeDo.map((l) => (
+                  <li key={l.name}><Link to={l.path} className="dna-nav-link !font-normal">{l.name}</Link></li>
+                ))}
+              </ul>
+            </nav>
+            <nav aria-labelledby="ft-about">
+              <FooterHeading id="ft-about">About</FooterHeading>
+              <ul className="space-y-3 text-[15px]">
+                {about.map((l) => (
+                  <li key={l.name}><Link to={l.path} className="dna-nav-link !font-normal">{l.name}</Link></li>
+                ))}
+              </ul>
+            </nav>
+            <div>
+              <FooterHeading>Info</FooterHeading>
+              <ul className="space-y-3 text-[15px]">
+                <li><a href="mailto:founder@dravintel.com" className="dna-nav-link !font-normal [overflow-wrap:anywhere]">founder@dravintel.com</a></li>
+                <li><a href="tel:+916369638870" className="dna-nav-link !font-normal">+91-6369638870</a></li>
+                <li><a href="https://wa.me/916369638870" target="_blank" rel="noopener noreferrer" className="dna-nav-link !font-normal">WhatsApp</a></li>
+              </ul>
+            </div>
+            <div className="col-span-2 lg:col-span-1">
+              <FooterHeading>Office</FooterHeading>
+              <p className="text-[15px] leading-relaxed">
+                Innov8, The Address,
+                <br />
+                Radial Ring Road, Pallavaram, Chennai
+              </p>
+              <Link to="/contact" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-[40px] bg-[var(--sai-accent)] px-6 text-[15px] font-medium text-[var(--sai-accent-ink)] transition-shadow hover:shadow-[0_0_24px_rgba(172,236,0,0.5)]">
+                <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
+                Start a project
+              </Link>
+            </div>
+          </div>
+
+          {/* Office clock chip */}
+          <p className="mt-12 flex items-center gap-2.5 text-[15px]">
+            <span className="rounded-lg border border-[#7fae00] px-3.5 py-1.5 tabular-nums">{time}</span>
+            Chennai, India
+          </p>
+
+          <div className="mt-10 flex flex-col-reverse gap-6 md:flex-row md:items-center md:justify-between">
+            <p className="text-[14px] text-[#3d5266]">© {new Date().getFullYear()} Dravintel Design. All rights reserved.</p>
+            <button
+              type="button"
+              onClick={() => scrollToTarget(0)}
+              className="inline-flex min-h-11 items-center gap-2 self-start rounded-[40px] bg-[#eefbd2] px-6 text-[15px] font-medium text-[var(--sai-bg)] transition-colors hover:bg-[var(--sai-accent)] md:self-auto"
+            >
+              Back to top <ArrowUpToLine className="h-4 w-4" strokeWidth={1.75} />
+            </button>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }

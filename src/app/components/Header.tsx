@@ -1,160 +1,137 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { ArrowRight, Plus, X } from 'lucide-react';
-import logoSmall from '@/assets/logosmall.svg';
-import logoWhite from '@/assets/logobig.svg'; // Assuming we want the white logo for the purple background
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { CornerDownRight, Menu, X } from 'lucide-react';
+import logoWhite from '@/assets/dravintel-logo-white.png';
 import { cn } from '@/app/components/ui/utils';
-import { Button } from '@/app/components/ui/button';
-import {
-    Sheet,
-    SheetContent,
-    SheetTrigger,
-    SheetClose,
-    SheetTitle,
-} from '@/app/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle } from '@/app/components/ui/sheet';
 
 const navItems = [
-    { name: 'Services', path: '/services' },
-    { name: 'Work', path: '/work' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+  { name: 'Our Work', path: '/work' },
+  { name: 'Our Services', path: '/services' },
+  { name: 'About', path: '/about' },
+  { name: 'Insights', path: '/#blog' },
+  { name: 'Contact', path: '/contact' },
 ];
 
+/**
+ * SAI-style header: a floating navy bar with rounded bottom corners, logo left,
+ * centred navigation, lime "Let's Talk" pill right. Gains a blurred backdrop once scrolled.
+ */
 export function Header() {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  useEffect(() => setIsOpen(false), [pathname]);
 
-    return (
-        <header
-            className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                isScrolled ? "bg-white/30 backdrop-blur-md py-4 shadow-sm border-b border-white/20" : "bg-transparent py-8"
-            )}
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 px-2 md:px-3.5">
+        <div
+          className={cn(
+            'mx-auto flex h-[72px] md:h-[92px] max-w-[1440px] items-center justify-between gap-6 rounded-b-[28px] md:rounded-b-[40px] border-b px-4 md:px-12 transition-[background-color,border-color,box-shadow] duration-500',
+            scrolled
+              ? 'border-[rgba(172,236,0,0.28)] bg-[rgba(0,18,36,0.82)] shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl'
+              : 'border-[rgba(255,255,255,0.12)] bg-[rgba(0,24,46,0.35)] backdrop-blur-md'
+          )}
         >
-            <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-                <div className="flex items-center justify-between">
+          <Link to="/" aria-label="Dravintel Design — home" className="block shrink-0 py-2">
+            <img src={logoWhite} alt="" width={399} height={109} className="h-8 md:h-10 w-auto max-w-none object-contain" />
+          </Link>
 
-                    {/* Left: LE'TS TALK Button */}
-                    <Button
-                        asChild
-                        variant="outline"
-                        className="hidden sm:inline-flex rounded-full border-black text-black hover:bg-[#8B5CF6] hover:border-[#8B5CF6] hover:text-white transition-all px-6 py-5 text-xs font-bold tracking-widest uppercase gap-2"
-                    >
-                        <Link to="/contact">
-                            <ArrowRight className="w-3 h-3" />
-                            Let's Talk
-                        </Link>
-                    </Button>
+          <nav aria-label="Main" className="hidden lg:block">
+            <ul className="flex items-center gap-10 xl:gap-12">
+              {navItems.map((item) => (
+                <li key={item.path}>
+                  <NavLink
+                    to={item.path}
+                    end
+                    className={({ isActive }) =>
+                      cn('dna-nav-link text-[15px] text-white', isActive && item.path !== '/#blog' && 'active text-[var(--sai-accent)]')
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-                    {/* Center: Logo */}
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                        <Link to="/" className="flex items-center gap-2 group">
-                            <img src={logoSmall} alt="Dravintel" className="h-8 w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
-                        </Link>
-                    </div>
+          <div className="flex items-center gap-2 md:gap-4">
+            <Link to="/contact" className="dna-cta !min-h-11 !px-5 !text-[15px] md:!px-7">
+              <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
+              Let's Talk
+            </Link>
+            <button
+              type="button"
+              onClick={() => setIsOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={isOpen}
+              className="grid h-11 w-11 place-items-center rounded-full text-white lg:hidden"
+            >
+              <Menu className="h-6 w-6" strokeWidth={1.5} />
+            </button>
+          </div>
+        </div>
+      </header>
 
-                    {/* Right: + Menu Button */}
-                    <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                        <SheetTrigger asChild>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="rounded-full h-10 w-10 border-black text-black hover:bg-[#8B5CF6] hover:border-[#8B5CF6] hover:text-white transition-all ml-auto"
-                            >
-                                <Plus className={`h-5 w-5 transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`} />
-                                <span className="sr-only">Toggle menu</span>
-                            </Button>
-                        </SheetTrigger>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetContent
+          side="right"
+          className="!w-screen !max-w-none border-none bg-[var(--sai-bg)] text-white p-0 flex flex-col overflow-y-auto [&>button]:hidden"
+        >
+          <SheetTitle className="sr-only">Menu</SheetTitle>
+          <div className="flex h-[72px] items-center justify-between px-6">
+            <Link to="/" onClick={() => setIsOpen(false)} className="block py-2">
+              <img src={logoWhite} alt="Dravintel Design" width={399} height={109} className="h-8 w-auto max-w-none object-contain" />
+            </Link>
+            <button type="button" onClick={() => setIsOpen(false)} aria-label="Close menu" className="grid h-11 w-11 place-items-center rounded-full">
+              <X className="h-6 w-6" strokeWidth={1.5} />
+            </button>
+          </div>
 
-                        <SheetContent
-                            side="right"
-                            className="!w-screen !max-w-none border-none bg-[#8B5CF6] p-0 flex flex-col [&>button]:hidden font-sans"
-                        >
-                            <SheetTitle className="sr-only">Full Screen Navigation Menu</SheetTitle>
+          <nav aria-label="Menu" className="flex-1 px-6 pt-8">
+            <ul className="space-y-2">
+              {[{ name: 'Home', path: '/' }, ...navItems].map((item) => (
+                <li key={item.path}>
+                  <NavLink
+                    to={item.path}
+                    end
+                    onClick={() => setIsOpen(false)}
+                    className={({ isActive }) =>
+                      cn(
+                        'block py-2 text-[2rem] font-medium leading-tight',
+                        isActive && item.path !== '/#blog' ? 'text-[var(--sai-accent)]' : 'text-[var(--sai-head)]'
+                      )
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-                            {/* Menu Header */}
-                            <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-8 flex items-center justify-between">
-                                {/* White Logo */}
-                                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
-                                    <img src={logoWhite} alt="Dravintel" className="h-8 w-auto brightness-0 invert" />
-                                </Link>
-
-                                {/* Close Button */}
-                                <SheetClose asChild>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="rounded-full h-10 w-10 border border-white/30 text-white hover:bg-white hover:text-[#8B5CF6] transition-all"
-                                    >
-                                        <X className="h-5 w-5" />
-                                        <span className="sr-only">Close menu</span>
-                                    </Button>
-                                </SheetClose>
-                            </div>
-
-                            {/* Menu Content */}
-                            <div className="flex-1 w-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
-                                <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-center">
-                                    {/* Left Column: Nav & Tagline */}
-                                    <div className="flex flex-col gap-16 md:gap-24 w-full md:w-auto">
-                                        <nav className="flex flex-col gap-4">
-                                            {navItems.map((item) => (
-                                                <NavLink
-                                                    key={item.name}
-                                                    to={item.path}
-                                                    onClick={() => setIsOpen(false)}
-                                                    className={({ isActive }) =>
-                                                        cn(
-                                                            "group flex items-center gap-4 text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-white transition-all",
-                                                            isActive ? "opacity-100" : "opacity-70 hover:opacity-100"
-                                                        )
-                                                    }
-                                                >
-                                                    <ArrowRight
-                                                        className="w-8 h-8 sm:w-10 sm:h-10 opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                                                    />
-                                                    <span className="translate-x-0 transition-transform duration-300 group-hover:translate-x-2">
-                                                        {item.name}
-                                                    </span>
-                                                </NavLink>
-                                            ))}
-                                        </nav>
-
-                                        <div>
-                                            <p className="text-white/60 text-lg sm:text-xl font-light tracking-wide pl-2 sm:pl-14">
-                                                Elevate beyond ordinary
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Right Column: Let's Talk Button */}
-                                    <div className="hidden md:block mt-8 md:mt-0">
-                                        <Button
-                                            asChild
-                                            variant="outline"
-                                            className="rounded-full border-white text-white hover:bg-white hover:text-[#8B5CF6] transition-all px-8 py-6 text-sm font-bold tracking-widest uppercase gap-2 bg-transparent"
-                                        >
-                                            <Link to="/contact" onClick={() => setIsOpen(false)}>
-                                                <ArrowRight className="w-4 h-4" />
-                                                Let's Talk
-                                            </Link>
-                                        </Button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </SheetContent>
-                    </Sheet>
-                </div>
+          <div className="space-y-6 px-6 pb-10 pt-10">
+            <div className="dna-body">
+              <a href="mailto:founder@dravintel.com" className="dna-nav-link block text-white">founder@dravintel.com</a>
+              <a href="tel:+916369638870" className="dna-nav-link block text-white">+91-6369638870</a>
+              <p className="mt-3">Innov8, The Address, Radial Ring Road, Pallavaram, Chennai</p>
             </div>
-        </header>
-    );
+            <Link to="/contact" onClick={() => setIsOpen(false)} className="dna-cta">
+              <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
+              Let's Talk
+            </Link>
+          </div>
+        </SheetContent>
+      </Sheet>
+    </>
+  );
 }
