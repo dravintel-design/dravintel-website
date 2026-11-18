@@ -62,7 +62,7 @@ export function ServicesPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   return (
-    <div className="relative bg-[var(--sai-bg)]">
+    <div className="relative bg-[var(--dv-bg)]">
       <PageHero video="clouds" lines={['Design That', 'Builds Brands']}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw]">
           <p className="lg:col-span-4 lg:col-start-6 dna-lead">
@@ -85,7 +85,7 @@ export function ServicesPage() {
 
         <div className="mt-[12vw] md:mt-[8vw] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-[2.5vw]">
           {approaches.map((approach, index) => (
-            <Reveal key={approach.title} delay={index * 0.15} className="sai-card h-full p-6 md:p-8">
+            <Reveal key={approach.title} delay={index * 0.15} className="dv-card h-full p-6 md:p-8">
               <h3 className="dna-h3 mb-4">{approach.title}</h3>
               <p className="dna-body text-[var(--dna-gray-800)]">{approach.description}</p>
             </Reveal>
@@ -94,7 +94,7 @@ export function ServicesPage() {
       </section>
 
       {/* 02. FAQs */}
-      <section className="sai-panel dna-section dna-gutter">
+      <section className="dv-panel dna-section dna-gutter">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-[4vw]">
           <div className="lg:col-span-4">
             <DyeText text="FAQ's" className="dna-h1" off="#8a8a8a" />

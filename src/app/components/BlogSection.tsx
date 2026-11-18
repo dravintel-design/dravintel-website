@@ -28,19 +28,19 @@ const blogPosts = [
 ];
 
 /**
- * SAI "Insights": a large rounded surface panel — heading + outline pill, then article rows
+ * A large rounded surface panel — heading + outline pill, then article rows
  * (title and date left, summary right). Each row links to the Substack article.
  */
 export function BlogSection() {
   return (
     <section id="blog" aria-labelledby="insights-title" className="relative py-[calc(var(--dna-section)*0.5)]">
-      <div className="sai-panel min-[1480px]:mx-auto min-[1480px]:max-w-[1440px]">
+      <div className="dv-panel min-[1480px]:mx-auto min-[1480px]:max-w-[1440px]">
         <div className="dna-gutter py-[calc(var(--dna-section)*0.75)]">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <Reveal>
                 <h2 id="insights-title" className="dna-h2">
-                  Thoughts, <span className="sai-hl">insights</span> &amp; updates.
+                  Thoughts, <span className="dv-hl">insights</span> &amp; updates.
                 </h2>
               </Reveal>
               <Reveal delay={0.1}>
@@ -60,7 +60,7 @@ export function BlogSection() {
 
           <ul className="mt-10 md:mt-14">
             {blogPosts.map((post, index) => (
-              <li key={post.href} className="border-t border-[var(--sai-line)] first:border-t-0">
+              <li key={post.href} className="border-t border-[var(--dv-line)] first:border-t-0">
                 <Reveal delay={index * 0.08}>
                   <article className="group relative grid gap-6 py-10 md:py-14 lg:grid-cols-12 lg:gap-10">
                     <div className="flex gap-5 lg:col-span-6">
@@ -72,13 +72,13 @@ export function BlogSection() {
                         className="hidden sm:block h-20 w-32 shrink-0 rounded-xl object-cover md:h-24 md:w-40"
                       />
                       <div>
-                        <h3 className="text-[clamp(1.25rem,1.05rem+0.7vw,1.625rem)] font-medium leading-snug text-[var(--sai-head)] transition-colors group-hover:text-[var(--sai-accent)]">
+                        <h3 className="text-[clamp(1.25rem,1.05rem+0.7vw,1.625rem)] font-medium leading-snug text-[var(--dv-head)] transition-colors group-hover:text-[var(--dv-accent)]">
                           <a href={post.href} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0">
                             {post.title}
                             <span className="sr-only"> (opens Substack in a new tab)</span>
                           </a>
                         </h3>
-                        <p className="mt-3 text-[13px] text-[var(--sai-muted)]">{post.date}</p>
+                        <p className="mt-3 text-[13px] text-[var(--dv-muted)]">{post.date}</p>
                       </div>
                     </div>
                     <div className="self-center lg:col-span-5 lg:col-start-8">

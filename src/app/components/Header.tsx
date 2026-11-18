@@ -14,7 +14,7 @@ const navItems = [
 ];
 
 /**
- * SAI-style header: a floating navy bar with rounded bottom corners, logo left,
+ * Header: a floating navy bar with rounded bottom corners, logo left,
  * centred navigation, lime "Let's Talk" pill right. Gains a blurred backdrop once scrolled.
  */
 export function Header() {
@@ -54,7 +54,7 @@ export function Header() {
                     to={item.path}
                     end
                     className={({ isActive }) =>
-                      cn('dna-nav-link text-[15px] text-white', isActive && item.path !== '/#blog' && 'active text-[var(--sai-accent)]')
+                      cn('dna-nav-link text-[15px] text-white', isActive && item.path !== '/#blog' && 'active text-[var(--dv-accent)]')
                     }
                   >
                     {item.name}
@@ -85,7 +85,7 @@ export function Header() {
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent
           side="right"
-          className="!w-screen !max-w-none border-none bg-[var(--sai-bg)] text-white p-0 flex flex-col overflow-y-auto [&>button]:hidden"
+          className="!w-screen !max-w-none border-none bg-[var(--dv-bg)] text-white p-0 flex flex-col overflow-y-auto [&>button]:hidden"
         >
           <SheetTitle className="sr-only">Menu</SheetTitle>
           <div className="flex h-[72px] items-center justify-between px-6">
@@ -108,7 +108,7 @@ export function Header() {
                     className={({ isActive }) =>
                       cn(
                         'block py-2 text-[2rem] font-medium leading-tight',
-                        isActive && item.path !== '/#blog' ? 'text-[var(--sai-accent)]' : 'text-[var(--sai-head)]'
+                        isActive && item.path !== '/#blog' ? 'text-[var(--dv-accent)]' : 'text-[var(--dv-head)]'
                       )
                     }
                   >

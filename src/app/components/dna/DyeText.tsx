@@ -8,7 +8,7 @@ interface DyeTextProps {
   className?: string;
   /** Text colour (optional; usually inherited). */
   on?: string;
-  /** Unused in the Born system (kept so existing call sites compile). */
+  /** Unused (kept so existing call sites compile). */
   off?: string;
   id?: string;
 }
@@ -20,7 +20,7 @@ function motionTag(tag: string) {
 }
 
 /**
- * Born-style scroll fade ("lax fadeIn"): opacity follows scroll position —
+ * Scroll fade: opacity follows scroll position —
  * 0 as the heading enters the bottom of the viewport, fully opaque by 70% height.
  */
 export function DyeText({ text, as = 'h2', className, on, id }: DyeTextProps) {

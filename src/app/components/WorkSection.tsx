@@ -41,7 +41,7 @@ const SPEED = 26; // px per second — slow drift
 const MIN_OPACITY = 0.28; // right-most card
 
 /**
- * SAI "Case Studies": centred heading, then a slow right-to-left loop showing five cards.
+ * Centred heading, then a slow right-to-left loop showing five cards.
  * Each card's opacity follows its position — 100% at the left edge, fading towards the right —
  * so cards brighten as they travel left. Eases to a stop on hover/focus so cards can be read
  * and clicked; stays still (opacity gradient kept) for prefers-reduced-motion.
@@ -107,11 +107,11 @@ export function WorkSection() {
 
   return (
     <section id="work" aria-labelledby="work-title" className="relative dna-section overflow-hidden">
-      <div aria-hidden="true" className="sai-glow sai-glow--teal left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2" />
+      <div aria-hidden="true" className="dv-glow dv-glow--teal left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2" />
       <div className="dna-container dna-gutter relative text-center">
         <Reveal>
           <h2 id="work-title" className="dna-h2">
-            <span className="sai-hl">Unforgettable work</span>, distinctly ours.
+            <span className="dv-hl">Unforgettable work</span>, distinctly ours.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
@@ -142,12 +142,12 @@ export function WorkSection() {
                   <Link
                     to="/work"
                     tabIndex={clone ? -1 : undefined}
-                    className="group relative block aspect-[3/4] overflow-hidden rounded-[24px] md:rounded-[28px] bg-[var(--sai-surface)]"
+                    className="group relative block aspect-[3/4] overflow-hidden rounded-[24px] md:rounded-[28px] bg-[var(--dv-surface)]"
                   >
                     <ImageWithFallback src={project.image} alt="" className="dna-img absolute inset-0 h-full w-full object-cover" />
                     <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[rgba(0,18,36,0.94)] via-[rgba(0,18,36,0.3)] to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 text-left">
-                      <p className="text-[13px] font-medium text-[var(--sai-accent)]">{project.category}</p>
+                      <p className="text-[13px] font-medium text-[var(--dv-accent)]">{project.category}</p>
                       <h3 className="mt-1.5 text-[1.125rem] md:text-[1.25rem] font-medium leading-snug text-white">{project.title}</h3>
                       <p className="mt-2 line-clamp-2 text-[14px] leading-relaxed text-white/80">{project.description}</p>
                     </div>

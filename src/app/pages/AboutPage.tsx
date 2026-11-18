@@ -27,16 +27,16 @@ const principles = [
   },
 ];
 
-/** Lime highlight (SAI emphasis words). */
+/** Lime highlight (emphasis words). */
 function Mark({ children }: { children: React.ReactNode }) {
-  return <span className="sai-hl font-medium">{children}</span>;
+  return <span className="dv-hl font-medium">{children}</span>;
 }
 
 export function AboutPage() {
   useDocumentTitle('About');
 
   return (
-    <div className="relative bg-[var(--sai-bg)]">
+    <div className="relative bg-[var(--dv-bg)]">
       <PageHero video="road" lines={['Turning Thought', 'Into Something', 'Real']}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw] dna-body">
           <p className="lg:col-span-3 lg:col-start-4">
@@ -55,7 +55,7 @@ export function AboutPage() {
       <section className="dna-section dna-gutter">
         <div className="md:ml-[38%]">
           <DyeText text={'Who\nWe Are'} className="dna-h1" />
-          <Reveal delay={0.15} className="mt-10 md:mt-14 space-y-6 text-[clamp(1.25rem,2vw,1.875rem)] leading-[1.6] text-[var(--sai-head)]">
+          <Reveal delay={0.15} className="mt-10 md:mt-14 space-y-6 text-[clamp(1.25rem,2vw,1.875rem)] leading-[1.6] text-[var(--dv-head)]">
             <p>
               <Mark>Dravintel Design</Mark> is a design and technology studio built on a simple idea.
             </p>

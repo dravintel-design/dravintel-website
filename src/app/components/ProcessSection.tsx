@@ -23,7 +23,7 @@ const processSteps = [
 ];
 
 /**
- * SAI "SmartCX" band: an oversized gradient wordmark drifting behind a centred heading,
+ * An oversized gradient wordmark drifting behind a centred heading,
  * supporting copy, three glowing step cards and a lime primary pill.
  */
 export function ProcessSection() {
@@ -34,7 +34,7 @@ export function ProcessSection() {
 
   return (
     <section ref={ref} id="process" aria-labelledby="process-title" className="relative dna-section overflow-hidden">
-      <div aria-hidden="true" className="sai-glow left-1/2 top-[38%] h-[560px] w-[900px] -translate-x-1/2" />
+      <div aria-hidden="true" className="dv-glow left-1/2 top-[38%] h-[560px] w-[900px] -translate-x-1/2" />
       <motion.p
         aria-hidden="true"
         style={reduced ? undefined : { x }}
@@ -46,7 +46,7 @@ export function ProcessSection() {
       <div className="dna-container dna-gutter relative mt-6 md:mt-10 text-center">
         <Reveal>
           <h2 id="process-title" className="dna-h2 mx-auto max-w-[30ch]">
-            A journey of a thousand miles <span className="sai-hl">begins with a single step.</span>
+            A journey of a thousand miles <span className="dv-hl">begins with a single step.</span>
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
@@ -59,7 +59,7 @@ export function ProcessSection() {
           {processSteps.map((step, index) => (
             <li key={step.number}>
               <Reveal delay={index * 0.12} className="h-full">
-                <div className="h-full rounded-[20px] border border-[var(--sai-line)] bg-[rgba(10,39,64,0.7)] p-6 md:p-8 backdrop-blur-sm">
+                <div className="h-full rounded-[20px] border border-[var(--dv-line)] bg-[rgba(10,39,64,0.7)] p-6 md:p-8 backdrop-blur-sm">
                   <h3 className="dna-h3">{step.title}</h3>
                   <p className="dna-body mt-4">{step.description}</p>
                 </div>

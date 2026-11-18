@@ -12,7 +12,7 @@ import { WorkPage } from '@/app/pages/WorkPage';
 import { AboutPage } from '@/app/pages/AboutPage';
 import { ContactPage } from '@/app/pages/ContactPage';
 
-/** Born-style page change: quick fade out, scroll reset, gentle fade in. */
+/** Page change: quick fade out, scroll reset, gentle fade in. */
 function AnimatedRoutes() {
   const location = useLocation();
   return (
@@ -76,7 +76,7 @@ export default function App() {
       </AnimatePresence>
 
       {!isLoading && (
-        <div className="min-h-screen bg-[var(--sai-bg)] relative">
+        <div className="min-h-screen bg-[var(--dv-bg)] relative">
           <Header />
           <AnimatedRoutes />
           <Toaster theme="dark" position="bottom-center" richColors={false} />

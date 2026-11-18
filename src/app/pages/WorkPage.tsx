@@ -43,7 +43,7 @@ export function WorkPage() {
   useDocumentTitle('Work');
 
   return (
-    <div className="relative bg-[var(--sai-bg)]">
+    <div className="relative bg-[var(--dv-bg)]">
       <PageHero video="cliff" lines={['Unforgettable Work', 'Distinctly Ours']}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw] dna-body">
           <p className="lg:col-span-4 lg:col-start-6">
@@ -112,7 +112,7 @@ export function WorkPage() {
       </section>
 
       {/* CTA */}
-      <section className="sai-panel dna-section dna-gutter mb-[var(--dna-section)]">
+      <section className="dv-panel dna-section dna-gutter mb-[var(--dna-section)]">
         <DyeText text={'Ready to Start\nYour Project?'} className="dna-h1" off="#8a8a8a" />
         <Reveal delay={0.15} className="mt-8 flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
           <p className="dna-lead">Let's create something extraordinary together</p>

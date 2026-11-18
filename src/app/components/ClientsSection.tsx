@@ -12,14 +12,14 @@ const clients = [
   { name: "Raji's Kitchen", logo: rajisKitchenLogo },
 ];
 
-/** SAI "Partners": heading left, then a grid of dimmed white logos that brighten on hover. */
+/** heading left, then a grid of dimmed white logos that brighten on hover. */
 export function ClientsSection() {
   return (
     <section aria-labelledby="clients-title" className="relative dna-section">
       <div className="dna-container dna-gutter">
         <Reveal>
           <h2 id="clients-title" className="dna-h2 max-w-[30ch]">
-            Working with clients who <span className="sai-hl">push boundaries</span> is what drives us.
+            Working with clients who <span className="dv-hl">push boundaries</span> is what drives us.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>

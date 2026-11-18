@@ -26,7 +26,7 @@ const testimonials = [
 ];
 
 /**
- * SAI-style testimonials: left heading + lead with an outline pill on the right, then a
+ * Testimonials: left heading + lead with an outline pill on the right, then a
  * horizontal row of dark 20px-rounded cards — large italic quote on top, author at the bottom.
  * Native scroll-snap row, so touch, trackpad and keyboard all work.
  */
@@ -36,7 +36,7 @@ export function TestimonialsSection() {
       <div className="dna-container dna-gutter">
         <Reveal>
           <h2 id="testimonials-title" className="dna-h2 max-w-[40ch]">
-            Hear it from the <span className="sai-hl">people we&apos;ve built with</span>.
+            Hear it from the <span className="dv-hl">people we&apos;ve built with</span>.
           </h2>
         </Reveal>
         <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -57,12 +57,12 @@ export function TestimonialsSection() {
       <div className="dna-container mt-12 md:mt-16">
         <ul
           aria-label="Client testimonials"
-          className="sai-track dna-gutter flex gap-6 md:gap-[60px] overflow-x-auto scroll-px-[var(--dna-gutter)] pb-2"
+          className="dv-track dna-gutter flex gap-6 md:gap-[60px] overflow-x-auto scroll-px-[var(--dna-gutter)] pb-2"
         >
           {testimonials.map((t, i) => (
             <li key={i} className="w-[84vw] shrink-0 sm:w-[400px]">
               <Reveal delay={0.08 * i} className="flex h-full">
-              <figure className="flex min-h-[420px] w-full flex-col justify-between rounded-[20px] bg-[var(--sai-surface)] p-8 md:min-h-[450px] md:p-9">
+              <figure className="flex min-h-[420px] w-full flex-col justify-between rounded-[20px] bg-[var(--dv-surface)] p-8 md:min-h-[450px] md:p-9">
                 <blockquote className="text-[clamp(1.125rem,1rem+0.45vw,1.375rem)] italic leading-[1.5] text-white">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>

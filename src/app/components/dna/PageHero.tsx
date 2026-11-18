@@ -13,18 +13,18 @@ interface PageHeroProps {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** SAI-style page hero: navy stage, uppercase gradient title, supporting copy, lime glow + video. */
+/** Page hero: navy stage, uppercase gradient title, supporting copy, lime glow + video. */
 export function PageHero({ lines, children, video }: PageHeroProps) {
   return (
-    <header className="relative isolate overflow-hidden bg-[var(--sai-bg)] text-white">
+    <header className="relative isolate overflow-hidden bg-[var(--dv-bg)] text-white">
       {video && (
         <>
           <VideoBg name={video} priority className="-z-10 opacity-55" />
-          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[var(--sai-bg)] via-[var(--sai-bg)]/80 to-[var(--sai-bg)]/20" />
-          <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[var(--sai-bg)] to-transparent" />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[var(--dv-bg)] via-[var(--dv-bg)]/80 to-[var(--dv-bg)]/20" />
+          <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[var(--dv-bg)] to-transparent" />
         </>
       )}
-      <div aria-hidden="true" className="sai-glow -z-10 left-[-10%] top-[20%] h-[480px] w-[640px]" />
+      <div aria-hidden="true" className="dv-glow -z-10 left-[-10%] top-[20%] h-[480px] w-[640px]" />
 
       <div className="dna-container dna-gutter flex min-h-[78svh] flex-col pt-[120px] md:pt-[140px] pb-[var(--dna-pad)]">
         <div className="mt-auto pt-12">
@@ -38,7 +38,7 @@ export function PageHero({ lines, children, video }: PageHeroProps) {
           </motion.h1>
           {children && (
             <motion.div
-              className="mt-8 md:mt-12 text-[var(--sai-body)]"
+              className="mt-8 md:mt-12 text-[var(--dv-body)]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.45, ease }}

@@ -7,7 +7,7 @@ import { VideoBg } from '@/app/components/dna/VideoBg';
 import { scrollToTarget } from '@/app/components/dna/SmoothScroll';
 
 /**
- * SAI-style hero: full-viewport navy stage, uppercase gradient headline left, lime primary
+ * Hero: full-viewport navy stage, uppercase gradient headline left, lime primary
  * pill, live studio clock and a round scroll cue. Background: the monochrome looping cliff
  * video, tinted navy. Set HERO_3D = true to swap in the Three.js sculpture instead.
  */
@@ -33,7 +33,7 @@ class SceneErrorBoundary extends Component<{ children: ReactNode; fallback: Reac
   }
 }
 
-/** Live Chennai time with seconds (SAI's office clock in the hero). */
+/** Live Chennai time with seconds. */
 function useStudioClock() {
   const fmt = () =>
     new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date());
@@ -66,7 +66,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="home" className="relative isolate min-h-[100svh] overflow-hidden bg-[var(--sai-bg)] text-white">
+    <section ref={sectionRef} id="home" className="relative isolate min-h-[100svh] overflow-hidden bg-[var(--dv-bg)] text-white">
       {webgl ? (
         <div aria-hidden="true" className={`absolute inset-0 -z-10 transition-opacity duration-[1500ms] ease-out ${sceneReady ? 'opacity-100' : 'opacity-0'}`}>
           <SceneErrorBoundary fallback={<VideoBg name="cliff" priority active={active} className="opacity-50" />}>
@@ -79,19 +79,19 @@ export function HeroSection() {
         <>
           <VideoBg name="cliff" priority active={active} className="-z-10" />
           {/* Navy tint ties the greyscale footage into the brand palette */}
-          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[var(--sai-bg)]/45 mix-blend-multiply" />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[var(--dv-bg)]/45 mix-blend-multiply" />
           <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_75%_40%,rgba(172,236,0,0.10),transparent_60%)]" />
         </>
       )}
       {/* Keep the copy side legible over the sculpture */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[var(--sai-bg)]/90 via-[var(--sai-bg)]/55 to-[var(--sai-bg)]/10" />
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-[var(--sai-bg)]/80 to-transparent" />
-      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[var(--sai-bg)] to-transparent" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[var(--dv-bg)]/90 via-[var(--dv-bg)]/55 to-[var(--dv-bg)]/10" />
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-[var(--dv-bg)]/80 to-transparent" />
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[var(--dv-bg)] to-transparent" />
 
       <div className="dna-container dna-gutter relative flex min-h-[100svh] flex-col pt-[112px] md:pt-[132px] pb-24">
         <div className="flex flex-wrap items-center justify-end gap-x-6 gap-y-1">
           <p className="inline-flex items-center gap-2.5 text-[15px] text-white/90" aria-label={`Chennai studio time ${time}`}>
-          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-[var(--sai-accent)] shadow-[0_0_12px_var(--sai-accent)]" />
+          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-[var(--dv-accent)] shadow-[0_0_12px_var(--dv-accent)]" />
           <span aria-hidden="true">Chennai</span>
           <span aria-hidden="true" className="tabular-nums">{time}</span>
           </p>
@@ -132,7 +132,7 @@ export function HeroSection() {
         type="button"
         onClick={() => scrollToTarget('#work')}
         aria-label="Scroll to our work"
-        className="absolute bottom-8 left-1/2 grid h-11 w-11 -translate-x-1/2 place-items-center rounded-full border border-white/90 text-white transition-colors hover:border-[var(--sai-accent)] hover:bg-[var(--sai-accent)] hover:text-[var(--sai-accent-ink)]"
+        className="absolute bottom-8 left-1/2 grid h-11 w-11 -translate-x-1/2 place-items-center rounded-full border border-white/90 text-white transition-colors hover:border-[var(--dv-accent)] hover:bg-[var(--dv-accent)] hover:text-[var(--dv-accent-ink)]"
       >
         <ChevronDown className="h-5 w-5" strokeWidth={1.75} />
       </button>

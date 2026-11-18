@@ -36,7 +36,7 @@ export function Loader({ onLoadingComplete }: LoaderProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 bg-[var(--sai-bg)] text-white"
+      className="fixed inset-0 z-50 bg-[var(--dv-bg)] text-white"
       role="progressbar"
       aria-label="Loading Dravintel"
       aria-valuemin={0}
@@ -49,7 +49,7 @@ export function Loader({ onLoadingComplete }: LoaderProps) {
     >
       {/* Hairline progress */}
       <div className="absolute left-0 top-0 h-[2px] w-full bg-white/15">
-        <div className="h-full bg-[var(--sai-accent)] transition-[width] duration-100 ease-linear" style={{ width: `${progress}%` }} />
+        <div className="h-full bg-[var(--dv-accent)] transition-[width] duration-100 ease-linear" style={{ width: `${progress}%` }} />
       </div>
 
       <motion.img

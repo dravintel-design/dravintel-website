@@ -115,7 +115,7 @@ export function ContactPage() {
   ];
 
   return (
-    <div className="relative bg-[var(--sai-bg)]">
+    <div className="relative bg-[var(--dv-bg)]">
       <PageHero video="coast" lines={["Let's build", 'something bold.']}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw] dna-body">
           <p className="lg:col-span-4 lg:col-start-6">
@@ -183,7 +183,7 @@ export function ContactPage() {
 
             <div role="status" aria-live="polite" className="mt-8 empty:hidden">
               {status && (
-                <p className={`dna-body border-l-2 pl-4 ${status.type === 'error' ? 'border-[#ff7a7a] text-[#ffb3b3]' : 'border-[var(--sai-accent)] text-white'}`}>
+                <p className={`dna-body border-l-2 pl-4 ${status.type === 'error' ? 'border-[#ff7a7a] text-[#ffb3b3]' : 'border-[var(--dv-accent)] text-white'}`}>
                   {status.message}
                 </p>
               )}
@@ -191,7 +191,7 @@ export function ContactPage() {
 
             <div className="mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <p className="dna-body text-[var(--dna-gray-600)]">
-                We'll get back to you in <span className="font-semibold text-[var(--sai-accent)]">2 working days</span>
+                We'll get back to you in <span className="font-semibold text-[var(--dv-accent)]">2 working days</span>
               </p>
               <button type="submit" disabled={isSubmitting} className="dna-cta disabled:opacity-50">
                 {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" strokeWidth={1.5} />}
@@ -203,7 +203,7 @@ export function ContactPage() {
       </section>
 
       {/* 02. Faster response — light surface so it is clearly separated from the black footer */}
-      <section className="sai-panel text-white dna-section dna-gutter mb-[var(--dna-section)]">
+      <section className="dv-panel text-white dna-section dna-gutter mb-[var(--dna-section)]">
         <DyeText text={'Need a faster\nresponse?'} className="dna-h1" off="#8a8a8a" />
         <Reveal delay={0.15} className="dna-lead mt-8 max-w-2xl">
           Choose your preferred method of contact based on how quickly you need to hear from us.
