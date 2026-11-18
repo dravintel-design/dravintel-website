@@ -7,7 +7,7 @@ import { VideoBg } from '@/app/components/dna/VideoBg';
 import { scrollToTarget } from '@/app/components/dna/SmoothScroll';
 
 /**
- * Hero: full-viewport navy stage, uppercase gradient headline left, lime primary
+ * Hero: full-viewport navy stage, sentence-case gradient headline left, lime primary
  * pill, live studio clock and a round scroll cue. Background: the monochrome looping cliff
  * video, tinted navy. Set HERO_3D = true to swap in the Three.js sculpture instead.
  */

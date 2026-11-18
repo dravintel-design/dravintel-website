@@ -11,31 +11,31 @@ const projects = [
     title: 'ACOE',
     description: 'Refined Japanese hospitality branding rooted in the philosophy of kintsugi.',
     image: 'https://images.unsplash.com/photo-1618220179428-22790b461013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYXBhbmVzZSUyMGludGVyaW9yJTIwZGVzaWdufGVufDF8fHx8MTczODQyNzIwMHww&ixlib=rb-4.1.0&q=80&w=1080',
-    tags: ['BRANDING', 'UI/UX', 'WEB DESIGN', 'DEVELOPMENT', 'MOTION DESIGN'],
+    tags: ['Branding', 'UI/UX', 'Web design', 'Development', 'Motion design'],
   },
   {
     title: 'Nesa',
     description: 'Where decentralized AI meets visual complexity.',
     image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwYWklMjBjaGlwfGVufDF8fHx8MTczODQyNzIwMHww&ixlib=rb-4.1.0&q=80&w=1080',
-    tags: ['LOGO & BRANDING', 'WEB DESIGN', 'DEVELOPMENT', '3D ART', 'UI/UX', 'MOTION GRAPHICS'],
+    tags: ['Logo & branding', 'Web design', 'Development', '3D art', 'UI/UX', 'Motion graphics'],
   },
   {
     title: 'Quantum Finance',
     description: 'Next-generation banking platform with AI-powered insights.',
     image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNlJTIwdGVjaG5vbG9neXxlbnwxfHx8fDE3Mzg0MjcyMDB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    tags: ['UI/UX', 'WEB DESIGN', 'DEVELOPMENT', 'BRANDING', 'MOTION DESIGN'],
+    tags: ['UI/UX', 'Web design', 'Development', 'Branding', 'Motion design'],
   },
   {
     title: 'EcoVerse',
     description: 'Sustainable living marketplace connecting conscious consumers.',
     image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY28lMjBzdXN0YWluYWJsZSUyMHByb2R1Y3R8ZW58MXx8fHwxNzM4NDI3MjAwfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    tags: ['BRANDING', 'WEB DESIGN', 'UI/UX', 'DEVELOPMENT', '3D ART'],
+    tags: ['Branding', 'Web design', 'UI/UX', 'Development', '3D art'],
   },
   {
     title: 'Pulse Athletics',
     description: 'Performance-driven fitness brand for the modern athlete.',
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwYXRobGV0aWN8ZW58MXx8fHwxNzM4NDI3MjAwfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    tags: ['BRANDING', 'MOTION GRAPHICS', 'WEB DESIGN', 'UI/UX', 'DEVELOPMENT'],
+    tags: ['Branding', 'Motion graphics', 'Web design', 'UI/UX', 'Development'],
   },
 ];
 
@@ -44,7 +44,7 @@ export function WorkPage() {
 
   return (
     <div className="relative bg-[var(--dv-bg)]">
-      <PageHero video="cliff" lines={['Unforgettable Work', 'Distinctly Ours']}>
+      <PageHero video="cliff" lines={['Unforgettable work,', 'distinctly ours']}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw] dna-body">
           <p className="lg:col-span-4 lg:col-start-6">
             Each project reflects the strategy, craft, and attention to detail we bring from the first sketch to the final release. Nothing is rushed. Everything is intentional.

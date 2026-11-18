@@ -6,8 +6,8 @@ import { cn } from '@/app/components/ui/utils';
 import { Sheet, SheetContent, SheetTitle } from '@/app/components/ui/sheet';
 
 const navItems = [
-  { name: 'Our Work', path: '/work' },
-  { name: 'Our Services', path: '/services' },
+  { name: 'Our work', path: '/work' },
+  { name: 'Our services', path: '/services' },
   { name: 'About', path: '/about' },
   { name: 'Insights', path: '/#blog' },
   { name: 'Contact', path: '/contact' },
@@ -67,7 +67,7 @@ export function Header() {
           <div className="flex items-center gap-2 md:gap-4">
             <Link to="/contact" className="dna-cta !min-h-11 !px-5 !text-[15px] md:!px-7">
               <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
-              Let's Talk
+              Let's talk
             </Link>
             <button
               type="button"
@@ -127,7 +127,7 @@ export function Header() {
             </div>
             <Link to="/contact" onClick={() => setIsOpen(false)} className="dna-cta">
               <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
-              Let's Talk
+              Let's talk
             </Link>
           </div>
         </SheetContent>

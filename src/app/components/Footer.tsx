@@ -6,14 +6,14 @@ import { Reveal } from '@/app/components/dna/Reveal';
 import { scrollToTarget } from '@/app/components/dna/SmoothScroll';
 
 const whatWeDo = [
-  { name: 'UX UI Design', path: '/services' },
-  { name: 'Product Design', path: '/services' },
-  { name: 'Web Development', path: '/services' },
-  { name: 'AI Automation', path: '/services' },
+  { name: 'UX/UI design', path: '/services' },
+  { name: 'Product design', path: '/services' },
+  { name: 'Web development', path: '/services' },
+  { name: 'AI automation', path: '/services' },
 ];
 const about = [
-  { name: 'Our Work', path: '/work' },
-  { name: 'About Us', path: '/about' },
+  { name: 'Our work', path: '/work' },
+  { name: 'About us', path: '/about' },
   { name: 'Services', path: '/services' },
   { name: 'Contact', path: '/contact' },
 ];
@@ -43,7 +43,7 @@ function useChennaiTime() {
 
 function FooterHeading({ children, id }: { children: string; id?: string }) {
   return (
-    <h2 id={id} className="mb-6 text-[15px] font-semibold uppercase tracking-[0.02em] text-[var(--dv-bg)]">
+    <h2 id={id} className="mb-6 text-[15px] font-semibold text-[var(--dv-bg)]">
       {children}
     </h2>
   );
@@ -68,7 +68,7 @@ export function Footer() {
             </Reveal>
             <Reveal delay={0.15} className="mt-10">
               <Link to="/contact" className="dna-cta">
-                Let's Talk
+                Let's talk
               </Link>
             </Reveal>
           </div>

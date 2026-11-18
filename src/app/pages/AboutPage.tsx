@@ -37,7 +37,7 @@ export function AboutPage() {
 
   return (
     <div className="relative bg-[var(--dv-bg)]">
-      <PageHero video="road" lines={['Turning Thought', 'Into Something', 'Real']}>
+      <PageHero video="road" lines={['Turning thought', 'into something', 'real']}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw] dna-body">
           <p className="lg:col-span-3 lg:col-start-4">
             We're a team of designers, developers, and thinkers who care deeply about craft and clarity.

@@ -33,7 +33,7 @@ export function CultureSection() {
           <Reveal delay={0.2} className="mt-8 flex flex-wrap gap-4">
             <Link to="/about" className="dna-btn dna-btn--white">
               <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
-              About Us
+              About us
             </Link>
             <Link to="/contact" className="dna-btn">
               <CornerDownRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />

@@ -22,7 +22,7 @@ export function ContactPage() {
     services: [] as string[],
   });
 
-  const services = ['UX UI', 'WEB DESIGN', 'PRODUCT DESIGN', 'WEB APP', 'MOBILE APP', 'INDUSTRIAL DESIGN', 'WORKSHOP', 'OTHER'];
+  const services = ['UX/UI', 'Web design', 'Product design', 'Web app', 'Mobile app', 'Industrial design', 'Workshop', 'Other'];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

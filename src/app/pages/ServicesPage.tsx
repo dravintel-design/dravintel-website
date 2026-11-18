@@ -63,7 +63,7 @@ export function ServicesPage() {
 
   return (
     <div className="relative bg-[var(--dv-bg)]">
-      <PageHero video="clouds" lines={['Design That', 'Builds Brands']}>
+      <PageHero video="clouds" lines={['Design that', 'builds brands']}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-[3vw]">
           <p className="lg:col-span-4 lg:col-start-6 dna-lead">
             Great design is more than aesthetics. It is strategy, clarity, storytelling, and experience working in unison.

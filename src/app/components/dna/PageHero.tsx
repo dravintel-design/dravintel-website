@@ -13,7 +13,7 @@ interface PageHeroProps {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** Page hero: navy stage, uppercase gradient title, supporting copy, lime glow + video. */
+/** Page hero: navy stage, sentence-case gradient title, supporting copy, lime glow + video. */
 export function PageHero({ lines, children, video }: PageHeroProps) {
   return (
     <header className="relative isolate overflow-hidden bg-[var(--dv-bg)] text-white">
